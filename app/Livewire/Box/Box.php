@@ -83,6 +83,7 @@ public function update(){
 
 
 //reset inputs
+//all
 public function resetinputs(){
     $this->box_details_name='';
     $this->box_details_serial_number='';
