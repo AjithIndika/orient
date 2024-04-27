@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "deploy": "ftp-deploy --server ftp.orientsewingmachine.lk --username oriant@orientsewingmachine.lk --password \"dxrW5cuQVU7XufLVShJw\""
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
