@@ -47,7 +47,7 @@
                                 </a>
                             </li>
                             <li class="sidenav-item">
-                                <a href="/suppliers" class="sidenav-link">
+                                <a href="/suppliers" class="sidenav-link" wire:navigate>
                                     <div>Suppliers</div>
                                 </a>
                             </li>
@@ -106,8 +106,8 @@
                         </ul>
                     </li>
                     <li class="sidenav-item">
-                        <a href="tables_bootstrap.html" class="sidenav-link">
-                            <i class="sidenav-icon feather icon-grid"></i>
+                        <a href="#" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-grid" wire:navigate></i>
                             <div>Geat Pass</div>
                         </a>
                     </li>
@@ -122,12 +122,12 @@
                         </a>
                         <ul class="sidenav-menu">
                             <li class="sidenav-item">
-                                <a href="/select-customer" class="sidenav-link">
+                                <a href="/select-customer" class="sidenav-link" wire:navigate>
                                     <div>New Geat Pass</div>
                                 </a>
                             </li>
                             <li class="sidenav-item">
-                                <a href="/geat-pass" class="sidenav-link">
+                                <a href="/geat-pass" class="sidenav-link" wire:navigate>
                                     <div>Geat Pass</div>
                                 </a>
                             </li>
