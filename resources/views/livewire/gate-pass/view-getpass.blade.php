@@ -129,10 +129,10 @@ Use App\Livewire\GatePass\ViewGetpass;
                       </div>
 
                       <div class="row">
-                       This genarate By System No Need to autharaization
+                       This genarate By System No Need to autharaization (Webiosa.com)
                       </div>
 
-                    
+
                 </div>
                 @endforeach
               </div>
@@ -149,6 +149,7 @@ Use App\Livewire\GatePass\ViewGetpass;
                     margin: 0;
                     padding: 0;
                     background-color: #FAFAFA;
+
                     font: 12pt "Tahoma";
                   }
 
