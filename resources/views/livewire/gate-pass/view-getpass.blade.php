@@ -129,7 +129,7 @@ Use App\Livewire\GatePass\ViewGetpass;
                       </div>
 
                       <div class="row">
-                       This genarate By System No Need to autharaization (Webiosa.com)
+                       This genarate By System No Need to autharaization 
                       </div>
 
 
