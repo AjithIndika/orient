@@ -2,4 +2,5 @@
 /database
 .env
 /public
+.htaccess
 
