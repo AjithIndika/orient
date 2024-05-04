@@ -56,8 +56,8 @@
                     <div class="clearfix"></div>
 
                 </div> <!-- end login -->
-                <div class="logo">LOGO
-
+                <div class="logo">
+<img src="{{ url('image-system/sw.png') }}">
                     <div class="clearfix"></div>
                 </div>
 
