@@ -85,15 +85,16 @@ Use App\Livewire\GatePass\ViewGetpass;
                             @endforeach
                            @endempty
 <!-------- Iron Details !---------->
+
                            @empty($iron)
                            @else
                            <tr class="mt-1">
-                               <th colspan="3"> Paddll Details</th>
+                               <th colspan="3"> Iron</th>
                            </tr>
-                           @foreach ($iron as $keys=>$Iron)
+                           @foreach ($iron as $keys=>$Ir)
                            <tr>
                                <th></th>
-                               <td colspan="2"> {{ViewGetpass::ironsn($Iron->ron_details_id)}}</td>
+                               <td colspan="2"> {{ViewGetpass::ironsn($Ir->iron_details_id)}}</td>
                            </tr>
                            @endforeach
                           @endempty
@@ -121,7 +122,7 @@ Use App\Livewire\GatePass\ViewGetpass;
                       </div>
                       <div class="row">
                         <div class="col"></div>
-                        <div class="col">Issued By / {{$getdetails->created_at}}</div>
+                        <div class="col">Issued By </div>
                       </div>
                       <div class="row">
                         <div class="col"></div>
@@ -129,7 +130,7 @@ Use App\Livewire\GatePass\ViewGetpass;
                       </div>
 
                       <div class="row">
-                       This genarate By System No Need to autharaization 
+                       This genarate By System No Need to autharaization
                       </div>
 
 

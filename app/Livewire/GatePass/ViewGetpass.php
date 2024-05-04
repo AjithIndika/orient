@@ -64,25 +64,24 @@ class ViewGetpass extends Component
     {
 
 
-        $getpassno=GeatpassDetails::where('geatpass_details_number',$this->geatpass_details_number)->value('geatpass_details_number');
+       // $getpassno=GeatpassDetails::where('geatpass_details_number',$this->geatpass_details_number)->value('geatpass_details_number');
 
-       // dump($getpassno);
+        $getpass=GeatpassDetails::join('customers_details','customers_details.customers_id','=','geatpass_details.customers_id')->where('geatpass_details_number','=',$this->geatpass_details_number)->get();
 
-        $getpass=GeatpassDetails::join('customers_details','customers_details.customers_id','=','geatpass_details.customers_id')
-                                  ->where('geatpass_details_number','=',$this->geatpass_details_number)->get();
-         $Machin =DeliveryMachineDetails::where('delivery_machine_details.geatpass_details_number','=',$this->geatpass_details_number)
-                                    ->get();
+         $Machin =DeliveryMachineDetails::where('delivery_machine_details.geatpass_details_number','=',$this->geatpass_details_number)->get();
 
-        $paddel=DeliverypaddleDetails::where('geatpass_details_number','=',$this->geatpass_details_number)
-                                             ->get();
+        $paddel=DeliverypaddleDetails::where('geatpass_details_number','=',$this->geatpass_details_number)->get();
 
-        $iron=DeliverypIronDetails::where('geatpass_details_number','=',$this->geatpass_details_number)
-                                             ->get();
+        $iron=DeliverypIronDetails::where('geatpass_details_number','=',$this->geatpass_details_number)->get();
+
+
+
         return view('livewire.gate-pass.view-getpass',[
                                                         'geatpass_details_number'=>$this->geatpass_details_number,
                                                         'getpass'=>$getpass,
                                                         'Machin'=>$Machin,
                                                         'paddel'=>$paddel,
-                                                        ' iron'=> $iron]);
+                                                        'iron'=> $iron]);
+                                                        
     }
 }

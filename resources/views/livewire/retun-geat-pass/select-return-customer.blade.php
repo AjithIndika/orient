@@ -5,7 +5,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="email">Select Customer:</label>
-                <select  class="form-control selectcustomer @error('customers_details')  border-danger  @enderror"  wire:model="customers_details"  id="selectcustomer" required>
+                <select  class="form-control @error('customers_details')  border-danger  @enderror"  required  wire:model="customers_id">
                   <option selected>Select Customer:</option>
                   @foreach ($custamers as $custamers)
                       <option value="{{$custamers->customers_id}}">{{$custamers->customers_name}}</option>
@@ -13,7 +13,7 @@
 
                 </select>
                 <div>
-                  @error('customers_details') <span class="text-danger">{{ $message }}</span> @enderror
+                  @error('customers_id') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
               </div>
         </div>
@@ -25,7 +25,6 @@
                 @error('geatpass_temp_details_driver_name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
-
     </div>
 
 
@@ -46,7 +45,6 @@
                 @error('geatpass_temp_details_driver_mobile') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
-
     </div>
 
     <div class="row">
@@ -59,14 +57,15 @@
               </div>
 
         <div class="col">
-
-
+            <div class="form-group">
+                <label for="email">Getpass Number:</label>
+                <input type="text" class="form-control  @error('gatepass_number')  border-danger  @enderror" placeholder="Gate pass Number"  id="email"  wire:model="gatepass_number"  required>
+                  @error('gatepass_number') <span class="text-danger">{{ $message }}</span> @enderror
+              </div>
         </div>
-
     </div>
     <button type="button" class="btn btn-lg btn-danger" wire:click.prevent="tempsave()">
         <span class="feather icon-skip-forward"></span>&nbsp;&nbsp;Next</button>
-
     </from>
 
 

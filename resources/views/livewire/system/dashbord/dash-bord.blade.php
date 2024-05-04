@@ -1,4 +1,10 @@
+<?php
+use App\Livewire\System\Dashbord\DashBord;
+
+?>
 <div class="container-fluid flex-grow-1 container-p-y">
+
+
     <h4 class="font-weight-bold py-3 mb-0">Dashboard</h4>
     <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
         <ol class="breadcrumb">
@@ -32,10 +38,10 @@
                     <div class="card mb-4 bg-pattern-2-dark">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="lnr lnr-gift display-4 text-primary"></div>
+                                <div class="feather icon-credit-card display-4 text-primary"></div>
                                 <div class="ml-3">
-                                    <div class="text-muted small">Products</div>
-                                    <div class="text-large">985</div>
+                                    <div class="text-muted small">Pending Invoice</div>
+                                    <div class="text-large">{{DashBord::pendingInvoice()}}</div>
                                 </div>
                             </div>
                             <div id="ecom-chart-3" class="mt-3 chart-shadow-primary" style="height:40px"></div>
@@ -62,7 +68,7 @@
                             <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
                                 <div class="card-body media align-items-center text-dark">
                                     <i class="lnr lnr-diamond display-4 d-block text-primary"></i>
-                                    <span class="media-body d-block ml-3"><span class="text-big mr-1 text-primary">$1584.78</span>
+                                    <span class="media-body d-block ml-3"><span class="text-big mr-1 text-primary">{{DashBord::thismonthIncome()}}</span>
                                         <br>
                                         <small class="text-muted">Earned this month</small>
                                     </span>
@@ -111,56 +117,56 @@
                         <div class="card-body">
                             <div class="row align-items-center mb-3">
                                 <div class="col-auto">
-                                    <i class="lnr lnr-earth text-primary display-4"></i>
+                                    <i class="feather icon-settings text-primary display-4"></i>
                                 </div>
                                 <div class="col">
-                                    <h6 class="mb-0 text-muted">Total <span class="text-primary">Subscription</span></h6>
-                                    <h4 class="mt-3 mb-0">7652<i class="ion ion-md-arrow-round-down ml-3 text-danger"></i></h4>
+                                    <h6 class="mb-0 text-muted">Sewing Machine<span class="text-primary"></span></h6>
+                                    <h4 class="mt-3 mb-0">{{DashBord::totalMC()}}</i></h4>
                                 </div>
                             </div>
-                            <p class="mb-0 text-muted">48% From Last 24 Hours</p>
+                            <p class="mb-0 text-muted"></p>
                         </div>
                     </div>
                     <div class="d-flex col-md-6 col-lg-3 align-items-center">
                         <div class="card-body">
                             <div class="row align-items-center mb-3">
                                 <div class="col-auto">
-                                    <i class="lnr lnr-cart text-primary display-4"></i>
+                                    <i class="feather icon-underline text-primary display-4"></i>
                                 </div>
                                 <div class="col">
-                                    <h6 class="mb-0 text-muted"><span class="text-primary">Order</span> Status</h6>
-                                    <h4 class="mt-3 mb-0">6325<i class="ion ion-md-arrow-round-up ml-3 text-success"></i></h4>
+                                    <h6 class="mb-0 text-muted">Paddle<span class="text-primary"></span> </h6>
+                                    <h4 class="mt-3 mb-0">{{DashBord::paddle()}}</h4>
                                 </div>
                             </div>
-                            <p class="mb-0 text-muted">36% From Last 6 Months</p>
+                            <p class="mb-0 text-muted"></p>
                         </div>
                     </div>
                     <div class="d-flex col-md-6 col-lg-3 align-items-center">
                         <div class="card-body">
                             <div class="row align-items-center mb-3">
                                 <div class="col-auto">
-                                    <i class="lnr lnr-users text-primary display-4"></i>
+                                    <i class="feather icon-box text-primary display-4"></i>
                                 </div>
                                 <div class="col">
-                                    <h6 class="mb-0 text-muted">Unique <span class="text-primary">Visitors</span></h6>
-                                    <h4 class="mt-3 mb-0">652<i class="ion ion-md-arrow-round-down ml-3 text-danger"></i></h4>
+                                    <h6 class="mb-0 text-muted">BOX <span class="text-primary"></span></h6>
+                                    <h4 class="mt-3 mb-0">{{DashBord::box()}}</h4>
                                 </div>
                             </div>
-                            <p class="mb-0 text-muted">36% From Last 6 Months</p>
+                            <p class="mb-0 text-muted"></p>
                         </div>
                     </div>
                     <div class="d-flex col-md-6 col-lg-3 align-items-center">
                         <div class="card-body">
                             <div class="row align-items-center mb-3">
                                 <div class="col-auto">
-                                    <i class="lnr lnr-magic-wand text-primary display-4"></i>
+                                    <i class="feather icon-activity text-primary display-4"></i>
                                 </div>
                                 <div class="col">
-                                    <h6 class="mb-0 text-muted">Monthly <span class="text-primary">Earnings</span></h6>
-                                    <h4 class="mt-3 mb-0">5963<i class="ion ion-md-arrow-round-up ml-3 text-success"></i></h4>
+                                    <h6 class="mb-0 text-muted">Iron <span class="text-primary"></span></h6>
+                                    <h4 class="mt-3 mb-0">{{DashBord::iron()}}</h4>
                                 </div>
                             </div>
-                            <p class="mb-0 text-muted">36% From Last 6 Months</p>
+                            <p class="mb-0 text-muted"></p>
                         </div>
                     </div>
                 </div>
@@ -174,30 +180,30 @@
         <div class="col-xl-5">
             <div class="card mb-4">
                 <div class="card-header with-elements">
-                    <h6 class="card-header-title mb-0">Tasks</h6>
+                    <h6 class="card-header-title mb-0">Cheque</h6>
                     <div class="card-header-elements ml-auto">
-                        <button type="button" class="btn btn-default btn-xs md-btn-flat">Show more</button>
+                        <button type="button" class="btn btn-default btn-xs md-btn-flat"><!--Show more!---!---></button>
                     </div>
                 </div>
                 <div style="height: 310px" id="tasks-inner">
                     <div class="card-body">
                         <p class="text-muted small">Today</p>
                         <div class="custom-controls-stacked">
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Buy products</span>
                                 <span class="ui-todo-badge badge badge-outline-default font-weight-normal ml-2">58 mins left</span>
                             </label>
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Reply to emails</span>
                             </label>
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Write blog post</span>
                                 <span class="ui-todo-badge badge badge-outline-default font-weight-normal ml-2">20 hours left</span>
                             </label>
-                            <label class="ui-todo-item custom-control custom-checkbox">
+                            <label class="ui-todo-item custom-control ">
                                 <input type="checkbox" class="custom-control-input" checked>
                                 <span class="custom-control-label">Wash my car</span>
                             </label>
@@ -207,42 +213,35 @@
                     <div class="card-body">
                         <p class="text-muted small">Tomorrow</p>
                         <div class="custom-controls-stacked">
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Buy antivirus</span>
                             </label>
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Jane's Happy Birthday</span>
                             </label>
-                            <label class="ui-todo-item custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
+                            <label class="ui-todo-item custom-control ">
+
                                 <span class="custom-control-label">Call mom</span>
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Type your task">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="col-xl-7">
             <div class="card mb-4">
                 <div class="card-header with-elements pb-0">
-                    <h6 class="card-header-title mb-0">Customer details</h6>
+                    <h6 class="card-header-title mb-0">Pending Invoice</h6>
                     <div class="card-header-elements ml-auto p-0">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#sale-stats">Sale stats</a>
+                                <a class="nav-link active" data-toggle="tab" href="#sale-stats">Last Month</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#latest-sales">Latest sales</a>
+                                <a class="nav-link" data-toggle="tab" href="#latest-sales">All</a>
                             </li>
                         </ul>
                     </div>
@@ -255,8 +254,8 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>Due</strong></span>
                                                 </label>
                                             </th>
@@ -267,8 +266,8 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -289,8 +288,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>16</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -311,8 +310,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>40</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -333,8 +332,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -355,8 +354,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -377,8 +376,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>16</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -399,8 +398,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>40</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>
@@ -421,8 +420,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input">
+                                                <label class="custom-control  mb-0">
+
                                                     <span class="custom-control-label"><strong>12</strong><br><span>hour</span></span>
                                                 </label>
                                             </td>

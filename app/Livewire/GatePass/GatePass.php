@@ -75,15 +75,17 @@ class GatePass extends Component
 
 
 
+
     public function additems()
     {
-        $mclist = MachinListDetails::where('machin_list_details_id', $this->MachinListDetails)->get();
+        $mclist = MachinListDetails::where('machin_list_details_id', $this->machin_list_details_id)->get();
         foreach ($mclist as $slectmc) {
             //  dump($slectmc->machin_type_details_id);
             GetpassTempItemsDetails::create([
                 'tempGetpassid' => $this->tempGetpassid,
                 'machin_type_details_id' => $slectmc->machin_type_details_id,
                 'machin_list_details_id' => $slectmc->machin_list_details_id,
+                'customers_id'=>$this->customers_id,
                 'box_details_id' => $slectmc->box_details_id,
                 'paddle_details_id' => $slectmc->paddle_details_id,
                 'iron_details_id' => $slectmc->iron_details_id,
@@ -127,10 +129,13 @@ class GatePass extends Component
     public function addiIron()
     {
         $mclist = IronDetails::where('iron_details_id', $this->irondetails)->get();
+   //   $customers_id=  GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->values('customers_id');
+
         foreach ($mclist as $slectmc) {
             tempIrontable::create([
                 'tempGetpassid' => $this->tempGetpassid,
                 'iron_details_id' => $slectmc->iron_details_id,
+                'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
                 'iron_daily_rent' => $slectmc->iron_daily_rent,
                 'iron_details_serial_number' => $slectmc->iron_details_serial_number,
             ]);
@@ -151,11 +156,18 @@ class GatePass extends Component
 
     public function addPaddle()
     {
+
+      //  dump($this->tempGetpassid);
+
+     //   dump(GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'));
+       // dump($this->PaDetails);
+
         $mclist = paddleDetails::where('paddle_details_id', $this->PaDetails)->get();
         foreach ($mclist as $slectmc) {
             tempPaddeltable::create([
                 'tempGetpassid' => $this->tempGetpassid,
                 'paddle_details_id' => $slectmc->paddle_details_id,
+                'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
                 'paddle_daily_rent' => $slectmc->paddle_daily_rent,
                 'paddle_details_serial_number' => $slectmc->paddle_details_serial_number,
             ]);
@@ -182,10 +194,10 @@ class GatePass extends Component
         if(!empty(GeatpassDetails::orderBy('geatpass_details_number', 'desc')->value('geatpass_details_number'))){
             $p=GeatpassDetails::orderBy('geatpass_details_number', 'desc')->value('geatpass_details_number');
             $er=explode("-",$p);
-            $pnumber='ORI-'.str_pad($er['1']+1, 8, '0', STR_PAD_LEFT);
+            $pnumber='ORGP-'.str_pad($er['1']+1, 8, '0', STR_PAD_LEFT);
          }
                else {
-                 $pnumber='ORI-'.str_pad(1, 8, '0', STR_PAD_LEFT);
+                 $pnumber='ORGP-'.str_pad(1, 8, '0', STR_PAD_LEFT);
           }
 
          $tepget= GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->get();
@@ -195,7 +207,7 @@ class GatePass extends Component
             GeatpassDetails::create([
                 'geatpass_details_number'=>$pnumber,
                 'geatpass_details_number_hash'=>Hash::make($pnumber),
-                'customers_id'=>$tgd->customers_id,
+                'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
                 'geatpass_details_vehicle'=>$tgd->geatpass_temp_details_vehicle,
                 'geatpass_details_driver_name'=>$tgd->geatpass_temp_details_driver_name,
                 'geatpass_details_driver_nic'=>$tgd->geatpass_temp_details_driver_nic,
@@ -216,6 +228,7 @@ class GatePass extends Component
             DeliveryMachineDetails::create([
                   'geatpass_details_number'=>$pnumber,
                   'machin_list_details_id'=>$Titem->machin_list_details_id,
+                  'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
                   'box_details_id'=>$Titem->box_details_id,
                   'machin_type_details_id'=>$Titem->machin_type_details_id,
                   'paddle_details_id'=>$Titem->paddle_details_id,
@@ -227,7 +240,7 @@ class GatePass extends Component
             ]);
 
             // add to machin delivery number
-            MachinListDetails::where('machin_list_details_id',$Titem->machin_type_details_id)->update([
+            MachinListDetails::where('machin_list_details_id',$Titem->machin_list_details_id)->update([
                 'machin_list_details_status'=>$pnumber,
              ]);
 
@@ -259,6 +272,7 @@ use App\Models\IronDetails;
         DeliverypaddleDetails::create([
              'geatpass_details_number'=>$pnumber,
              'paddle_details_id'=>$tp->paddle_details_id,
+             'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
              'paddle_daily_rent'=>$tp->paddle_daily_rent,
              'deliverypaddle_user'=>Auth::user()->name,
              'deliverypaddle_date'=>date('Y-m-d'),
@@ -279,6 +293,7 @@ use App\Models\IronDetails;
         DeliverypIronDetails::create([
              'geatpass_details_number'=>$pnumber,
              'iron_details_id'=>$intp->iron_details_id,
+             'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
              'iron_daily_rent'=>$intp->iron_daily_rent,
              'deliveryp_iron_user'=>Auth::user()->name,
              'deliveryp_iron_date'=>date('Y-m-d'),
@@ -298,7 +313,8 @@ use App\Models\IronDetails;
        GeatpassTempDetails::where('tempGetpassid',$this->tempGetpassid)->delete();
 
          return redirect()->to('/view-getpass/'.$pnumber);
-         toastr()->success('Paddle removed successfully!', 'Congrats');
+         toastr()->success('Paddle removed successfully!','Congrats');
+         $this->reset();
 
     }
 
@@ -314,13 +330,13 @@ use App\Models\IronDetails;
             ->get();
         $custamers = CustomersDetails::all();
 
-        $irDetails = IronDetails::where('iron_details.iron_details_status', '=', '')->where('iron_details.deliveryNote_id', '=','')->get();
-        $Pdtails = paddleDetails::where('paddle_details.paddle_details_status', '=', '')->where('paddle_details.deliveryNote_id', '=', '')->get();
+        $irDetails = IronDetails::where('iron_details.iron_details_status', '=', '')->where('iron_details.deliveryNote_id', '=',null)->orwhere('iron_details.deliveryNote_id', '=','')->orwhere('iron_details.iron_details_status', '=', null)->get();
+        $Pdtails = paddleDetails::where('paddle_details.paddle_details_status', '=', '')->where('paddle_details.deliveryNote_id', '=', null)->orwhere('paddle_details.deliveryNote_id', '=', '')->orwhere('paddle_details.paddle_details_status', '=', null)->get();
 
         $tempIron = tempIrontable::where('tempGetpassid', '=', $request->tempGetpassid)->get();
         $tempPaddle = tempPaddeltable::where('tempGetpassid', '=', $request->tempGetpassid)->get();
 
-        $mclist = MachinListDetails::join('machin_type_details', 'machin_type_details.machin_type_details_id', '=', 'machin_list_details.machin_type_details_id')->join('machin_brand_details', 'machin_brand_details.machin_brand_details_id', '=', 'machin_list_details.machin_brand_details_id')->join('machin_model_details', 'machin_model_details.machin_model_details_id', '=', 'machin_list_details.machin_model_details_id')->where('machin_list_details.machin_list_details_status', '=','')->get();
+        $mclist = MachinListDetails::join('machin_type_details', 'machin_type_details.machin_type_details_id', '=', 'machin_list_details.machin_type_details_id')->join('machin_brand_details', 'machin_brand_details.machin_brand_details_id', '=', 'machin_list_details.machin_brand_details_id')->join('machin_model_details', 'machin_model_details.machin_model_details_id', '=', 'machin_list_details.machin_model_details_id')->where('machin_list_details.machin_list_details_status','=','')->orwhere('machin_list_details.machin_list_details_status','=',null)->get();
 
         $tepmachinlist = GetpassTempItemsDetails::join('machin_type_details', 'machin_type_details.machin_type_details_id', '=', 'getpass_temp_items_details.machin_type_details_id')
             ->join('machin_list_details', 'machin_list_details.machin_list_details_id', '=', 'getpass_temp_items_details.machin_list_details_id')

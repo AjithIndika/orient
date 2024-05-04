@@ -38,6 +38,7 @@
                 <tr>
                     <th>#</th>
                     <th>Barcode</th>
+                    <th>Get Pass</th>
                     <th>Type</th>
                     <th>Brand</th>
                     <th>Model</th>
@@ -53,6 +54,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $mclist->machin_list_details_barcode }}</td>
+                        <td>{{ $mclist->machin_list_details_status }}</td>
                         <td>{{ $mclist->machin_type_details_name }}</td>
                         <td>{{ $mclist->machin_brand_details_name }}</td>
                         <td>{{ $mclist->machin_model_details_name }}</td>
@@ -77,7 +79,7 @@
                             @if (!empty($mclist->iron_details_id))
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
                                     data-toggle="modal" data-target="#ironremove-modal"
-                                    wire:click="ironview({{ $mclist->machin_list_details_id }})">
+                                    wire:click="ironview({{ $mclist->machin_list_details_id}})">
                                     <span class="feather icon-trash-2"></span>
                                 </button>
                             @else
@@ -317,7 +319,7 @@
 
                                     <option value="{{ $Paddle->paddle_details_id }}">
                                         {{ $Paddle->paddle_details_serial_number }}</option>
-                               
+
                             @endforeach
                         </select>
                         <div>

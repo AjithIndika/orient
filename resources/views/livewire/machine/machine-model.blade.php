@@ -23,7 +23,7 @@
             <thead>
               <tr>
               <th>#</th>
-                <th>Machine Brand Name</th>
+                <th>Machine Model Name</th>
                 <th>Action</th>
               </tr>
             </thead>

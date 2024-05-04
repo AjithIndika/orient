@@ -35,7 +35,7 @@
                             <label class="form-label">Machine</label>
 
 
-                            <select class="custom-select machinselec" id="jmachinselec" wire:model="machinlistdetails">
+                            <select class="custom-select machinselec" id="jmachinselec" wire:model="machin_list_details_id">
                                 <option selected>Select Machine</option>
 
                                 @foreach ($mclist as $mclists)
@@ -64,7 +64,7 @@
                                     <label class="form-label">Paddle</label>
 
 
-                                    <select class="custom-select Paddelselect">
+                                    <select class="custom-select Paddelselect" wire:model="PaDetails">
                                         <option selected>Select Paddle</option>
 
                                         @foreach ($Pdtails as $Pd)
@@ -91,7 +91,7 @@
                                     <label class="form-label">Iron</label>
 
 
-                                    <select class="custom-select Ironselect">
+                                    <select class="custom-select Ironselect" wire:model="irondetails">
                                         <option selected>Select </option>
 
                                         @foreach ($irDetails as $irDet)
