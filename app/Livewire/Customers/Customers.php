@@ -27,7 +27,7 @@ class Customers extends Component
     #[Validate('required')]
     public $customers_telephone = '';
 
-    #[Validate('required')]
+
     public $customers_email = '';
     public $customers_id = '';
     public $customers_register_user = '';
@@ -45,7 +45,7 @@ class Customers extends Component
         'customers_address' =>'required',
         'Customers_relation_officer_name' =>'required',
         'customers_telephone' =>'required',
-        'customers_email' =>'required|email',
+        'customers_email' =>'email',
         //'customers_register_user'=>'required'
     ]);
 

@@ -49,17 +49,13 @@ public function Edit(int $machin_brand_details_id){
 
 
 public function update(){
-
     $validateDate = $this->validate([
         'machin_brand_details_name' =>'required',
     ]);
-
     MachinBrandDetails::where('machin_brand_details_id',$this->machin_brand_details_id)->update([
        'machin_brand_details_name'=>$validateDate['machin_brand_details_name'],
     ]);
-
     toastr()->success('Data has been saved successfully!', 'Congrats');
-
 }
 
 

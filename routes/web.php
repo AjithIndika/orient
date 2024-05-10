@@ -22,6 +22,10 @@ use App\Livewire\RetunGeatPass\NewReturnGetpass;
 use App\Livewire\RetunGeatPass\ViewRetunGeatPass;
 use App\Livewire\RetunGeatPass\RetunGeatPassList;
 use App\Livewire\Invoice\NewInvoiceGenerate;
+use App\Livewire\OthereParts\OtherPartsType;
+use App\Livewire\OthereParts\OtherParts;
+
+
 
 
 Route::get('/', function () {
@@ -48,7 +52,9 @@ Route::get('/retun-get-pass',SelectReturnCustomer::class)->middleware('auth'); /
 Route::get('/new-return-getpass/{retun_geatpass_details_number}',NewReturnGetpass::class)->middleware('auth'); //new retungeatpass
 Route::get('/retun-get-pass-list',RetunGeatPassList::class)->middleware('auth');//view retun getpass
 Route::get('/view-retun-geatpass/{retun_geatpass_details_number}',ViewRetunGeatPass::class)->middleware('auth');//view retun getpass
-Route::get('/new-invoice-generate',NewInvoiceGenerate::class)->middleware('auth');//view retun getpass
+Route::get('/new-invoice-generate',NewInvoiceGenerate::class);//view retun getpass
+Route::get('/other_parts_type',OtherPartsType::class)->middleware('auth');
+Route::get('/OtherParts',OtherParts::class)->middleware('auth');
 
 
 

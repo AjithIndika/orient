@@ -5,6 +5,8 @@
     use App\Livewire\RetunGeatPass\NewReturnGetpass;
     use App\Models\DeliverypaddleDetails;
     use App\Models\DeliverypIronDetails;
+    use App\Models\OtheParts;
+    use App\Models\delivery_Othe_Parts;
 
     ?>
 
@@ -72,6 +74,12 @@
                                         ->where('deliveryp_iron_details.geatpass_details_number', '=', $geat->geatpass_details_number)
                                         ->where('deliveryp_iron_details.return_delivery_note_date', '=', null)
                                         ->orwhere('deliveryp_iron_details.return_delivery_note_date', '=', '')
+                                        ->get();
+
+                                        $other =delivery_Othe_Parts::join('othe_parts', 'othe_parts.othe_parts_id', '=', 'delivery__othe__parts.othe_parts_id')
+                                        ->where('geatpass_details_number', '=', $geat->geatpass_details_number)
+                                        ->where('return_delivery_note_date', '=', null)
+                                        ->orwhere('return_delivery_note_date', '=', '')
                                         ->get();
                                     ?>
 
@@ -159,8 +167,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-@if (!empty($Dpadd ))
-
+                                @if (!empty($Dpadd ))
 
                                 @foreach ($Dpadd as $itkey => $dp)
                                     <tr>
@@ -247,6 +254,65 @@
                 </tr>
 
             </tbody>
+
+
+
+<!----- other Parts !---------------->
+
+
+            <tbody>
+
+                <tr>
+                    <td>Other Parts</td>
+                    <td>
+                        <table class="table table-hover">
+
+                            <thead>
+                                <th colspan="6" class="text-center bg-info text-white">Iron</th>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Iron</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (!empty($other))
+
+
+                                @foreach ($other as $ortkey => $or)
+                                    <tr>
+                                        <td>{{ $ortkey + 1 }}</td>
+                                        <td></td>
+                                        <td>{{ $or->othe_parts_name }}</td>
+                                        <td>{{ $or->othe_parts_sn }} &nbsp;
+                                            @if ($or->return_delivery_note_date==null OR $or->return_delivery_note_date=='')
+                                                <button type="button" class="btn icon-btn btn-outline-danger" data-toggle="modal" data-target="#other-part-modal-view" wire:click="othepartsShow({{$or->delivery_othe_parts_id}})"><span
+                                                        class="feather icon-corner-up-left"
+                                                        style="width:24px;height:24px;"></span></button>
+                                            @endif
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+
+                                @else
+
+                                @endif
+
+                            </tbody>
+                        </table>
+
+
+                    </td>
+                </tr>
+
+            </tbody>
+
 
 
 
@@ -533,6 +599,45 @@
          </div>
      </div>
  </div>
+
+
+
+
+<!--------- otherparts remove---------!------->
+ <div wire:ignore.self class="modal fade" id="other-part-modal-view" tabindex="-1" role="dialog"
+         aria-labelledby="basicModal" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+
+                 <!-- Modal Header -->
+                 <div class="modal-header">
+                     <h4 class="modal-title">Other Parts Retun </h4>
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 </div>
+
+                 <!-- Modal body -->
+                 <div class="modal-body">
+                     <form>
+                         @csrf
+                         <h1>  Did you receive this Parts ?
+                         </h1>
+                         <input type="hidden" wire:model="othe_parts_id">
+                         <input type="hidden" wire:model="delivery_othe_parts_id">
+                 </div>
+
+                 <!-- Modal footer -->
+                 <div class="modal-footer">
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" id="modal_close"
+                             data-dismiss="modal">Close</button>
+                         <button type="submit" class="btn btn-primary" wire:click.prevent="othepartsreciveConfrom()">yes I
+                             confirm it</button>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
 
 
 

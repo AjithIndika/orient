@@ -24,6 +24,11 @@ use App\Models\Retun_machine_details;
 
 use App\Models\DeliverypaddleDetails;
 use App\Models\DeliverypIronDetails;
+
+use App\Models\delivery_Othe_Parts;
+use App\Models\Retun__Othe_Parts;
+
+use App\Models\OtheParts;
 use Livewire\Component;
 
 class NewReturnGetpass extends Component
@@ -42,6 +47,7 @@ class NewReturnGetpass extends Component
 
     public $tem_customers_id;
     public $retun_geatpass_details_number;
+    public $delivery_othe_parts_id;
 
     public static function boxsn($box_details_id)
     {
@@ -305,11 +311,6 @@ public $deliveryp_iron_details_id;
 
 //iron retun
 public function IronReciveShow($deliveryp_iron_details_id){
-
-
-   // dump($deliveryp_iron_details_id);
-
-
          $edata = DeliverypIronDetails::join('iron_details','iron_details.iron_details_id','=','deliveryp_iron_details.iron_details_id')->where('deliveryp_iron_details.deliveryp_iron_details_id',$deliveryp_iron_details_id)->first();
         if ($edata) {
             $this->iron_details_id = $edata->iron_details_id;
@@ -348,7 +349,57 @@ public function IronReciveShow($deliveryp_iron_details_id){
 
     }
 
+// othe parts show
 
+
+
+public function othepartsShow($delivery_othe_parts_id){
+    $edata = delivery_Othe_Parts::where('delivery_othe_parts_id',$delivery_othe_parts_id)->first();
+    if ($edata) {
+        $this->othe_parts_id = $edata->othe_parts_id;
+        $this->delivery_othe_parts_id= $edata->delivery_othe_parts_id;
+
+    } else {
+    }
+    $this->dispatch('other-part-modal-view');
+
+}
+
+public $othe_parts_id;
+//use app\Models\Retun__Othe_Parts;
+
+public function othepartsreciveConfrom(){
+
+
+     //  dump($this->iron_details_id);
+     //use App\Livewire\OthereParts\OtherPartsType;
+     //use App\Livewire\OthereParts\OtherParts;
+     //use app\Models\Retun__Othe_Parts;
+
+     $repassno = RetunGetpassDetails::where('retun_geatpass_details_number', $this->retun_geatpass_details_number)->value('return_gatepass_number');
+     // $atchDevice = DeliverypIronDetails::where('iron_details_id', $this->iron_details_id)->value('iron_details_serial_number');
+     delivery_Othe_Parts::where('delivery_othe_parts_id', $this->delivery_othe_parts_id)->update(['return_delivery_note_date' => date('Y-m-d H:i:s'), 'return_delivery_note_number'=>$this->retun_geatpass_details_number,'return_delivery_note_by' => Auth::user()->name]);
+     OtheParts::where('othe_parts_id', $this->othe_parts_id)->update(['othe_parts_status' => '', 'deliveryNote_id' => '']);
+
+     $othdetails= delivery_Othe_Parts::where('delivery_othe_parts_id', $this->delivery_othe_parts_id)->get();
+    foreach( $othdetails as $padlD){
+        Retun__Othe_Parts::create(['retun_geatpass_details_number'=>$this->retun_geatpass_details_number,
+                                'geatpass_details_number'=>$padlD->geatpass_details_number,
+                                        'othe_parts_id'=> $padlD->othe_parts_id,
+                                        'customers_id'=> $padlD->customers_id,
+                                        'othe_parts_daily_rate'=> $padlD->othe_parts_daily_rate,
+                                        'othe_parts_sn'=> $padlD->othe_parts_sn,
+                                        'return_delivery_note_number'=> $repassno,
+                                        'return_delivery_note_date'=> date('Y-m-d H:i:s'),
+                                        'return_by'=> Auth::user()->name
+                                     ]);
+                                 }
+         toastr()->success('Othe Parts Retun and it updated!', 'Congrats');
+
+
+
+
+}
 
 
     public function render()

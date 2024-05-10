@@ -57,6 +57,11 @@
     <script>
         new DataTable('#example');
     </script>
+    <style>
+        a:hover{
+            text-decoration: none;
+        }
+    </style>
 
 
 

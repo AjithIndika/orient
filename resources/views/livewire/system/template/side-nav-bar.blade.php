@@ -157,6 +157,32 @@
 
 
 
+                       <!-- Other parts -->
+                       <li class="sidenav-divider mb-1"></li>
+                       <li class="sidenav-header small font-weight-semibold">Other Parts</li>
+                       <li class="sidenav-item">
+                           <a href="javascript:" class="sidenav-link sidenav-toggle">
+                               <i class="sidenav-icon feather icon-clipboard"></i>
+                               <div>Other Parts</div>
+                           </a>
+                           <ul class="sidenav-menu">
+                               <li class="sidenav-item">
+                                   <a href="/other_parts_type" class="sidenav-link" wire:navigate>
+                                       <div>Other Parts Type</div>
+                                   </a>
+                               </li>
+                               <li class="sidenav-item">
+                                   <a href="/OtherParts" class="sidenav-link" wire:navigate>
+                                       <div>Other Parts</div>
+                                   </a>
+                               </li>
+
+                           </ul>
+                       </li>
+
+
+
+
                     <!-- Pages -->
                     <li class="sidenav-divider mb-1"></li>
                     <li class="sidenav-header small font-weight-semibold">Pages</li>

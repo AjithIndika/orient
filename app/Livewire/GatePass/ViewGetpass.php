@@ -10,6 +10,7 @@ use App\Models\paddleDetails;
 use App\Models\IronDetails;
 use App\Models\MachinListDetails;
 Use App\Models\MachinTypeDetails;
+use App\Models\delivery_Othe_Parts;
 
 use Illuminate\Http\Request;
 
@@ -73,6 +74,7 @@ class ViewGetpass extends Component
         $paddel=DeliverypaddleDetails::where('geatpass_details_number','=',$this->geatpass_details_number)->get();
 
         $iron=DeliverypIronDetails::where('geatpass_details_number','=',$this->geatpass_details_number)->get();
+        $Other=delivery_Othe_Parts::join('othe_parts','othe_parts.othe_parts_id','=','delivery__othe__parts.othe_parts_id')->where('geatpass_details_number','=',$this->geatpass_details_number)->get();
 
 
 
@@ -81,7 +83,8 @@ class ViewGetpass extends Component
                                                         'getpass'=>$getpass,
                                                         'Machin'=>$Machin,
                                                         'paddel'=>$paddel,
-                                                        'iron'=> $iron]);
-                                                        
+                                                        'iron'=> $iron,
+                                                        'Other'=>$Other]);
+
     }
 }

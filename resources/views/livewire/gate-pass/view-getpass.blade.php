@@ -100,6 +100,22 @@ Use App\Livewire\GatePass\ViewGetpass;
                           @endempty
 
 
+                          @empty($Other)
+                          @else
+                          <tr class="mt-1">
+                              <th colspan="3">Other Parts</th>
+                          </tr>
+                          @foreach ($Other as $keys=>$Oth)
+                          <tr>
+                              <th>{{$keys+1}}</th>
+                              <td>{{$Oth->othe_parts_name}}</td>
+                              <td>{{$Oth->othe_parts_sn}}</td>
+                          </tr>
+                          @endforeach
+                         @endempty
+
+
+
                         </tbody>
                       </table>
 

@@ -19,7 +19,7 @@
 
 
 
-        <table class="table table-bordered m-1">
+        <table class="table table-bordered m-1" style="overflow-x:auto;">
           <thead>
             <tr>
             <th>#</th>

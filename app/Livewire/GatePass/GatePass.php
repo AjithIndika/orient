@@ -20,11 +20,14 @@ use App\Models\tempPaddeltable;
 use App\Models\DeliveryMachineDetails;
 use App\Models\DeliverypaddleDetails;
 use App\Models\DeliverypIronDetails;
+use App\Models\tempOtheParts;
+use App\Models\delivery_Othe_Parts;
 
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\OtheParts;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -156,12 +159,6 @@ class GatePass extends Component
 
     public function addPaddle()
     {
-
-      //  dump($this->tempGetpassid);
-
-     //   dump(GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'));
-       // dump($this->PaDetails);
-
         $mclist = paddleDetails::where('paddle_details_id', $this->PaDetails)->get();
         foreach ($mclist as $slectmc) {
             tempPaddeltable::create([
@@ -175,8 +172,7 @@ class GatePass extends Component
         return redirect()->to('/new-getpass/' . $this->tempGetpassid . '');
     }
 
-    public function removepaddle(int $temp_paddeltables_id)
-    {
+    public function removepaddle(int $temp_paddeltables_id)    {
         $tempGetpassid = tempPaddeltable::where('temp_paddeltables_id', $temp_paddeltables_id)->value('tempGetpassid');
         tempPaddeltable::where('temp_paddeltables_id', $temp_paddeltables_id)->delete();
         toastr()->success('Paddle removed successfully!', 'Congrats');
@@ -184,7 +180,30 @@ class GatePass extends Component
     }
 
 
+    /// Add othe parts
+public $othe_parts_id;
+    public function addOthrParts(){
+        $othParts = OtheParts::where('othe_parts_id', $this->othe_parts_id)->get();
+        foreach ($othParts as $otp) {
+            tempOtheParts::create([
+                'tempGetpassid'=> $this->tempGetpassid,
+                'othe_parts_id'=> $otp->othe_parts_id,
+                'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
+                'othe_parts_daily_rate'=>$otp->othe_parts_daily_rate,
+                'othe_parts_sn' => $otp->othe_parts_sn,
+            ]);
+        }
+        toastr()->success('Other Part save successfully!', 'Congrats');
+        return redirect()->to('/new-getpass/' . $this->tempGetpassid . '');
+    }
 
+    public function othepartsRemove($temp_othe_parts_id){
+        $tempGetpassid =  tempOtheParts::where('temp_othe_parts_id', $temp_othe_parts_id)->value('tempGetpassid');
+        tempOtheParts::where('temp_othe_parts_id', $temp_othe_parts_id)->delete();
+        toastr()->success('Paddle removed successfully!', 'Congrats');
+        return redirect()->to('/new-getpass/' . $tempGetpassid . '');
+
+    }
 
 
     //Generate Delivery Note
@@ -306,6 +325,34 @@ use App\Models\IronDetails;
          ]);
        }
 
+
+///othe items
+
+//use App\Models\tempOtheParts;
+//use App\Models\delivery_OtheParts;
+//use App\Models\OtheParts;
+
+       $other=  tempOtheParts::where('tempGetpassid', '=', $this->tempGetpassid)->get();
+       foreach($other as $op){
+        delivery_Othe_Parts::create([
+             'geatpass_details_number'=>$pnumber,
+             'othe_parts_id'=>$op->othe_parts_id,
+             'othe_parts_sn'=>$op->othe_parts_sn,
+             'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
+             'othe_parts_daily_rate'=>$op->othe_parts_daily_rate,
+             'delivery_othe_parts_user'=>Auth::user()->name,
+             'delivery_othe_parts_date'=>date('Y-m-d'),
+             'last_invoice_date'=>null,
+             'return_delivery_note_number'=>null,
+             'return_delivery_note_date'=>null,
+        ]);
+        OtheParts::where('othe_parts_id',$op->othe_parts_id)->update([
+            'othe_parts_status'=>$pnumber,
+         ]);
+       }
+
+
+
        ///clear all temparry dbs
        tempPaddeltable::where('tempGetpassid',$this->tempGetpassid)->delete();
        tempIrontable::where('tempGetpassid',$this->tempGetpassid)->delete();
@@ -335,13 +382,21 @@ use App\Models\IronDetails;
 
         $tempIron = tempIrontable::where('tempGetpassid', '=', $request->tempGetpassid)->get();
         $tempPaddle = tempPaddeltable::where('tempGetpassid', '=', $request->tempGetpassid)->get();
-
         $mclist = MachinListDetails::join('machin_type_details', 'machin_type_details.machin_type_details_id', '=', 'machin_list_details.machin_type_details_id')->join('machin_brand_details', 'machin_brand_details.machin_brand_details_id', '=', 'machin_list_details.machin_brand_details_id')->join('machin_model_details', 'machin_model_details.machin_model_details_id', '=', 'machin_list_details.machin_model_details_id')->where('machin_list_details.machin_list_details_status','=','')->orwhere('machin_list_details.machin_list_details_status','=',null)->get();
+
+        $otherParts =OtheParts::join('othe_parts_types','othe_parts_types.othe_parts_types_id','=','othe_parts.othe_parts_types_id')->where('othe_parts_status', '=', '')->Orwhere('othe_parts_status', '=', null)->get();
+
 
         $tepmachinlist = GetpassTempItemsDetails::join('machin_type_details', 'machin_type_details.machin_type_details_id', '=', 'getpass_temp_items_details.machin_type_details_id')
             ->join('machin_list_details', 'machin_list_details.machin_list_details_id', '=', 'getpass_temp_items_details.machin_list_details_id')
             ->where('getpass_temp_items_details.tempGetpassid', '=', $request->tempGetpassid)
             ->get();
+
+
+     $temp_otheparts =tempOtheParts::join('othe_parts','othe_parts.othe_parts_id','=','temp_othe_parts.othe_parts_id')
+                                    ->where('tempGetpassid', '=', $request->tempGetpassid)->get();
+
+
 
         // $mclist=MachinListDetails::all();
         return view('livewire.gate-pass.gate-pass', [
@@ -354,6 +409,8 @@ use App\Models\IronDetails;
             'Pdtails' => $Pdtails,
             'tempIron' => $tempIron,
             'tempPaddle' => $tempPaddle,
+            'otherParts'=>$otherParts,
+            'temp_otheparts'=>$temp_otheparts,
         ])
             ->layout('livewire.system.template.template')
             ->title('New Geat Pass');
