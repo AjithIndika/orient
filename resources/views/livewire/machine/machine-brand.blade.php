@@ -43,11 +43,16 @@
                 </td>
               </tr>
               @endforeach
+
+              <tr ><td colspan="3"> {{ $data->links() }}</td></tr>
             </tbody>
+
+
+
           </table>
 
 
-                  {{ $data->links() }}
+
 
 
         </div>
