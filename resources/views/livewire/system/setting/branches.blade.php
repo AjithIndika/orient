@@ -1,12 +1,25 @@
 <div>
 
+    <?php
+     use Illuminate\Support\Facades\Session;
+?>
+
+
+@if(session()->get('branches_view')==0)
+
+<?php return redirect()->to('/no-access');?>
+
+@endif
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
     <div class="mt-5 ml-4">
+
+        @if(session()->get('branches_add')==1)
                   <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
                 <span class="feather icon-plus"></span>&nbsp;&nbsp;New Branche</button>
+
+                @endif
             </div>
     <div class="row">
 
@@ -38,10 +51,13 @@
                             <th>{{$branch->branches_telephone }}</th>
                             <th>{{$branch->branches_name }}</th>
                             <td>
+
+                                @if(session()->get('branches_edit')==1)
                                 <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"  data-target="#showeditbranches" wire:click="branchEdit({{$branch->branches_id }})">
                                 <span class="feather icon-edit"></span>
                                 </button>
-                                
+                                @endif
+
                          </td>
                          </tr>
 

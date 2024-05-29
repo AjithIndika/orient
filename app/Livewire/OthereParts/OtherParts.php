@@ -24,7 +24,7 @@ class OtherParts extends Component
         $validated = $this->validate([
             'othe_parts_types_id' =>'required',
             'othe_parts_sn' =>'required|unique:othe_parts',
-            'othe_parts_name' =>'regex:/^[\w-]*$/',
+            'othe_parts_name' =>'required',
             'othe_parts_daily_rate'=>'numeric',
         ]);
 

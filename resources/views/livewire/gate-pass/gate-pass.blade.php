@@ -36,7 +36,7 @@
                             <label class="form-label">Machine</label>
 
 
-                            <select class="custom-select machinselec" wire:model="machin_list_details_id" >
+                            <select class="custom-select machinselec machin_list_details_id" wire:model="machin_list_details_id" >
                                 <option selected>Select Machine</option>
 
                                 @foreach ($mclist as $mclists)
@@ -371,6 +371,19 @@
     </div>
 
     <script type="text/javascript">
+
+
+
+
+$(document).ready(function() {
+            $('.machin_list_details_id').select2();
+            $('.machin_list_details_id').on('change', function() {
+                let data = $(this).val();
+                @this.machin_list_details_id = data;
+            });
+        });
+
+
 
 
 

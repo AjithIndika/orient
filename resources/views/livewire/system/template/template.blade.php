@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 
+<?php
+use App\Models\Permittion;
+use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Session;
+use App\Helper\apirequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
+
+$per=json_decode(Permittion::where('user_id',Auth::id())->value('permittions'));
+Session::put(['user_view'=>$per->user_view,
+              'new_user_add'=>$per->new_user_add,
+              'user_edit'=>$per->user_edit,
+              'user_password'=>$per->user_password,
+              'branches_view'=>$per->branches_view,
+              'branches_add'=>$per->branches_add,
+              'branches_edit'=>$per->branches_edit]);
+
+
+?>
+
 <html lang="en" class="material-style layout-fixed">
 
 

@@ -5,12 +5,13 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Session;
 use App\Helper\apirequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Livewire\Component;
+
 use App\Models\GeatpassTempDetails;
 use App\Models\GeatpassDetails;
 use App\Models\CustomersDetails;
 use App\Models\MachinListDetails;
-use Illuminate\Http\Request;
-use Livewire\Component;
 use App\Models\GetpassTempItemsDetails;
 use App\Models\BoxDetails;
 use App\Models\paddleDetails;
@@ -22,12 +23,13 @@ use App\Models\DeliverypaddleDetails;
 use App\Models\DeliverypIronDetails;
 use App\Models\tempOtheParts;
 use App\Models\delivery_Othe_Parts;
-
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\OtheParts;
+
+
 
 use Illuminate\Support\Facades\Hash;
 
@@ -81,6 +83,12 @@ class GatePass extends Component
 
     public function additems()
     {
+
+
+      //  dump($this->tempGetpassid);
+     //  $cusmid= GeatpassTempDetails::where('tempGetpassid', $this->tempGetpassid)->value('customers_id');
+
+       // dd($this->machin_list_details_id);
         $mclist = MachinListDetails::where('machin_list_details_id', $this->machin_list_details_id)->get();
         foreach ($mclist as $slectmc) {
             //  dump($slectmc->machin_type_details_id);
@@ -88,7 +96,7 @@ class GatePass extends Component
                 'tempGetpassid' => $this->tempGetpassid,
                 'machin_type_details_id' => $slectmc->machin_type_details_id,
                 'machin_list_details_id' => $slectmc->machin_list_details_id,
-                'customers_id'=>$this->customers_id,
+                'customers_id'=>GeatpassTempDetails::where('tempGetpassid','=',$this->tempGetpassid)->value('customers_id'),
                 'box_details_id' => $slectmc->box_details_id,
                 'paddle_details_id' => $slectmc->paddle_details_id,
                 'iron_details_id' => $slectmc->iron_details_id,
@@ -194,7 +202,7 @@ public $othe_parts_id;
             ]);
         }
         toastr()->success('Other Part save successfully!', 'Congrats');
-        return redirect()->to('/new-getpass/' . $this->tempGetpassid . '');
+return redirect()->to('/new-getpass/' . $this->tempGetpassid . '');
     }
 
     public function othepartsRemove($temp_othe_parts_id){

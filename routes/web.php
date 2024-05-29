@@ -24,7 +24,13 @@ use App\Livewire\RetunGeatPass\RetunGeatPassList;
 use App\Livewire\Invoice\NewInvoiceGenerate;
 use App\Livewire\OthereParts\OtherPartsType;
 use App\Livewire\OthereParts\OtherParts;
+use App\Livewire\Invoice\NewInvoice;
+use App\Livewire\Invoice\ReadyToSend;
+use App\Livewire\Invoice\ViewInvoice;
 
+use App\Livewire\Invoice\EditInvoice;
+use App\Livewire\Users\NewUser;
+use App\Livewire\Access\Access;
 
 
 
@@ -55,6 +61,20 @@ Route::get('/view-retun-geatpass/{retun_geatpass_details_number}',ViewRetunGeatP
 Route::get('/new-invoice-generate',NewInvoiceGenerate::class);//view retun getpass
 Route::get('/other_parts_type',OtherPartsType::class)->middleware('auth');
 Route::get('/OtherParts',OtherParts::class)->middleware('auth');
+Route::get('/new-invoice',NewInvoice::class)->middleware('auth');
+Route::get('/edit-invoice/{invoice_details_number}',EditInvoice::class)->middleware('auth');
+
+Route::get('/ready-to-Send',ReadyToSend::class)->middleware('auth');
+Route::get('/viewInvoice/{invoice_details_number}',ViewInvoice::class)->middleware('auth');
+
+Route::get('/New-user',NewUser::class)->middleware('auth');
+Route::get('/no-access',Access::class)->middleware('auth');
+
+
+
+
+
+
 
 
 

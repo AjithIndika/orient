@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('invoice_details_balance')->nullable();
             $table->string('invoice_details_send_email')->nullable();
             $table->string('invoice_details_due_Date')->nullable();
+            $table->string('invoice_details_jenarate_Date')->nullable();
             $table->timestamps();
         });
     }

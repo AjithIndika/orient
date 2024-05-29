@@ -2,6 +2,10 @@
 
 return [
 
+
+
+    
+
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -15,6 +19,11 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'log'),
+
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -35,6 +44,21 @@ return [
     */
 
     'mailers' => [
+
+    'acc' => [
+        'transport' => 'smtp',
+        'host' => env('MAIL_HOST'),
+        'port' => env('MAIL_PORT'),
+        'encryption' => env('MAIL_ENCRYPTION'),
+        'username' => env('MAIL_USERNAME'),
+        'password' => env('MAIL_PASSWORD'),
+        'timeout' => null,
+         'verify_peer' => false,
+        'local_domain' => env('MAIL_EHLO_DOMAIN'),
+        'pretend' => false,
+    ],
+
+
 
         'smtp' => [
             'transport' => 'smtp',

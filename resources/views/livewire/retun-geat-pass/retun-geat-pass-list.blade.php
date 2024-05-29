@@ -31,7 +31,7 @@
         <tbody>
             @foreach ($retun as $key=>$RDN )
 
-            @endforeach
+
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{Carbon::parse($RDN->created_at)->format('Y-m-d')}}</td>
@@ -40,6 +40,7 @@
                 <td>{{$RDN->customers_name }}</td>
                 <td><a href="/view-retun-geatpass/{{$RDN->retun_geatpass_details_number}}" class="btn btn-outline-success" target="_blank" wire:navigate><i class="feather icon-edit"></i> </a></td>
             </tr>
+            @endforeach
         </tbody>
         <tfoot>
             <tr>

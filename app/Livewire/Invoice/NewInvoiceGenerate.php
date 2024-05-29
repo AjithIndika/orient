@@ -17,15 +17,21 @@ class NewInvoiceGenerate extends Component
     public function render()
     {
 
+        if (date('t') ==date('d')){
 
         $expenses = DeliveryMachineDetails::query()
-    ->select('customers_id','geatpass_details_number','delivery_machine_details_id' )
+    ->select('customers_id')
     ->where('last_invoice_date','=',null)
+    ->orwhere('last_invoice_date','=','')
+    ->orwhere('last_invoice_date','>',date('Y-m-d H:i:s'))
     ->orwhere('return_delivery_note_date','=',null)
+    ->orwhere('return_delivery_note_date','=','')
     ->orwhere('return_delivery_note_date','=<',date('Y-m-d H:i:s'))
-    ->groupBy(['customers_id','delivery_machine_details_id','geatpass_details_number'])
+    ->groupBy(['customers_id'])
     ->get();
 foreach( $expenses as $delivery){
+
+
  $cus=CustomersDetails::where('customers_id','=',$delivery->customers_id)->get();
 
  foreach($cus as $cs){
@@ -41,15 +47,40 @@ foreach( $expenses as $delivery){
       InvoiceDetails::create([
         'invoice_details_number'=>$pnumber,
         'customers_id'=>$delivery->customers_id,
+        'invoice_details_jenarate_Date'=>date('Y-m-d H:s:i'),
       ]);
 
-     $macD= DeliveryMachineDetails::where('delivery_machine_details_id','=',$delivery->delivery_machine_details_id)->get();
+
+
+     $de = DeliveryMachineDetails::query()
+      ->select('customers_id','geatpass_details_number','delivery_machine_details_id','last_invoice_date','return_delivery_note_date' )
+      ->where('customers_id','=',$delivery->customers_id)
+      ->ORwhere('last_invoice_date','=',null)
+      ->orwhere('last_invoice_date','=','')
+      ->orwhere('last_invoice_date','=<',date('Y-m-d H:i:s'))
+      ->orwhere('return_delivery_note_date','=',null)
+      ->orwhere('return_delivery_note_date','=','')
+      ->orwhere('return_delivery_note_date','=<',date('Y-m-d H:i:s'))
+      ->groupBy(['customers_id','geatpass_details_number','delivery_machine_details_id','last_invoice_date','return_delivery_note_date'])
+      ->get();
+
+    ///  dump($de);
+
+
+foreach( $de as $deas){
+
+
+     $macD= DeliveryMachineDetails::where('delivery_machine_details_id','=',$deas->delivery_machine_details_id)->get();
      foreach($macD as $MA){
+
+
+       // dump($MA->last_invoice_date);
+
 
        // crating invoice last invoice date
        if(!empty($MA->last_invoice_date)){
         $to = Carbon::createFromFormat('Y-m-d H:s:i',$MA->last_invoice_date);
-        $from = Carbon::createFromFormat('Y-m-d H:s:i',$MA->return_delivery_note_date);
+        $from =Carbon::parse($MA->return_delivery_note_date);// Carbon::createFromFormat('Y-m-d H:s:i',$MA->return_delivery_note_date);
         $diff_in_days = $from->diffInDays($to);
         echo $pnumber.'  last invoice date '.round($diff_in_days, 0);
        }
@@ -100,9 +131,12 @@ foreach( $expenses as $delivery){
        'return_delivery_note_date'=>$MA->return_delivery_note_date,
        'return_delivery_recive_by'=>$MA->return_delivery_recive_by,
        'used_date'=>round($diff_in_days, 0),
-       'cost_of_used_date'=>round($diff_in_days*$MA->machin_list_details_daily_rent, 0)  ,
+       'cost_of_used_date'=>number_format($diff_in_days*$MA->machin_list_details_daily_rent, 2)  ,
        'invoice_date'=>date('Y-m-d H:i:s'),
        ]);
+
+       DeliveryMachineDetails::where('delivery_machine_details_id', '=', $deas->delivery_machine_details_id)->update(['last_invoice_date' => date('Y-m-d H:i:s')]);
+
      }
 
 
@@ -110,8 +144,13 @@ foreach( $expenses as $delivery){
 }
 
 
+$invoice_total = InvoiceMacineDetails::where('invoice_details_number', '=', $pnumber)->sum('cost_of_used_date');
 
 
+InvoiceDetails::where('invoice_details_number', '=', $pnumber)->update(['invoice_details_total' => number_format($invoice_total, 2)]);
+
+}
+        }
 
         return view('livewire.invoice.new-invoice-generate');
     }
