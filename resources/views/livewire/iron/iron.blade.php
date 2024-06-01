@@ -1,6 +1,14 @@
 <div class="" >
 
 
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+
+    if(session()->get('Iron_view')==0){ return redirect()->to('/no-access'); }
+        ?>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -8,8 +16,10 @@
 
 
     <div class="mt-5 ml-4 mb-1">
+        @if(session()->get('Iron_add')==1)
       <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
     <span class="feather icon-plus"></span>&nbsp;&nbsp;Add New Iron </button>
+    @endif
   </div>
 
 
@@ -40,9 +50,11 @@
                 <td>{{$dataAll->iron_details_serial_number}}</td>
                 <td>{{$dataAll->iron_details_status}}</td>
                 <td>
+                    @if(session()->get('Iron_edit')==1)
                   <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"  data-target="#showeditbranches" wire:click="Edit({{$dataAll->iron_details_id}})">
                       <span class="feather icon-edit"></span>
                       </button>
+                      @endif
 
                 </td>
               </tr>

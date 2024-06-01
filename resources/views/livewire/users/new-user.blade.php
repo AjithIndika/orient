@@ -1,15 +1,11 @@
 
 <div class="mt-5">
-    <?php
+<?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-    ?>
+if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access'); }
+?>
 
-@if(session()->get('user_view')==0)
-
-<?php return redirect()->to('/no-access');?>
-
-@endif
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -48,7 +44,7 @@ use Illuminate\Support\Facades\Session;
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $allUsers->name }}</td>
-                        <td>{{ $allUsers->permittions }}</br></td>
+                        <td></br></td>
                         <td>
 
                             @if(session()->get('user_password')==1)

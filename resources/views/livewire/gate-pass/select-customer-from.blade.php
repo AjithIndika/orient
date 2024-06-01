@@ -1,4 +1,12 @@
 <div class="mt-5 col-sm-8 ml-5 bg-white " style="padding: 20px">
+
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+    if(session()->get('delivery_note_view')==0){ return redirect()->to('/no-access'); }
+    ?>
+
+
     <from >
         @csrf
     <div class="row">
@@ -64,8 +72,10 @@
         </div>
 
     </div>
+    @if(session()->get('delivery_note_add')==1)
     <button type="button" class="btn btn-lg btn-danger" wire:click.prevent="tempsave()">
         <span class="feather icon-skip-forward"></span>&nbsp;&nbsp;Next</button>
+        @endif
 
     </from>
 

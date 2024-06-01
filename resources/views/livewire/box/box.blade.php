@@ -1,4 +1,10 @@
 <div class="" >
+    <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+if(session()->get('box_view')==0){ return redirect()->to('/no-access'); }
+?>
+
 
 
 
@@ -8,8 +14,10 @@
 
 
     <div class="mt-5 ml-4 mb-1">
+        @if(session()->get('box_add')==1)
       <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
     <span class="feather icon-plus"></span>&nbsp;&nbsp;Add New Box </button>
+    @endif
   </div>
 
 
@@ -41,9 +49,11 @@
                 <td>{{$dataAll->box_details_status}}</td>
 
                 <td>
+                    @if(session()->get('box_edit')==1)
                   <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"  data-target="#showeditbranches" wire:click="Edit({{$dataAll->box_details_id}})">
                       <span class="feather icon-edit"></span>
                       </button>
+                      @endif
 
                 </td>
               </tr>

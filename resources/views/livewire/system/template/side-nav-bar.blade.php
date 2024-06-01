@@ -63,17 +63,20 @@
                         </a>
                     </li>
                     @endif
-
+                    @if(session()->get('Customer_view')==1)
                     <li class="sidenav-item">
                         <a href="/customers" class="sidenav-link" wire:navigate>
                             <div>Customers</div>
                         </a>
                     </li>
+                    @endif
+                    @if(session()->get('supplier_view')==1)
                     <li class="sidenav-item">
                         <a href="/suppliers" class="sidenav-link" wire:navigate>
                             <div>Suppliers</div>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
             <li class="sidenav-divider mb-1"></li>
@@ -86,46 +89,68 @@
                 <i class="sidenav-icon feather icon-settings text-muted"></i>
                 <div>Machine Details</div>
             </a>
+
+
             <ul class="sidenav-menu">
+                @if(session()->get('machine_view')==1)
                 <li class="sidenav-item">
                     <a href="/machine_list" class="sidenav-link" wire:navigate>
                         <div>Machine List</div>
                     </a>
                 </li>
+                @endif
+                @if(session()->get('machineModel_view')==1)
+
                 <li class="sidenav-item">
                     <a href="/machine-model" class="sidenav-link" wire:navigate>
                         <div>Machine Model</div>
                     </a>
                 </li>
+                @endif
+
+                @if(session()->get('machineBrand_view')==1)
                 <li class="sidenav-item">
                     <a href="/machine-brand" class="sidenav-link" wire:navigate>
                         <div>Machine Brand</div>
                     </a>
                 </li>
+                @endif
+
+                @if(session()->get('machineType_view')==1)
                 <li class="sidenav-item">
                     <a href="/machine_type" class="sidenav-link" wire:navigate>
                         <div>Machine Type</div>
                     </a>
                 </li>
+                @endif
+
+                @if(session()->get('Iron_view')==1)
                 <li class="sidenav-item">
                     <a href="/iron" class="sidenav-link" wire:navigate>
                         <div>Iron In</div>
                     </a>
                 </li>
+                @endif
+
+                @if(session()->get('paddle_view')==1)
                 <li class="sidenav-item">
                     <a href="/paddle" class="sidenav-link" wire:navigate>
                         <div>Paddle In</div>
                     </a>
                 </li>
+                @endif
+
+                @if(session()->get('box_view')==1)
                 <li class="sidenav-item">
                     <a href="/box" class="sidenav-link" wire:navigate>
                         <div>Machine Box Register</div>
                     </a>
                 </li>
+                @endif
             </ul>
         </li>
 
-
+        @if(session()->get('delivery_note_view')==1)
         <!-- Delivery Note -->
         <li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">Delivery Note</li>
@@ -149,6 +174,9 @@
             </ul>
         </li>
 
+@endif
+
+@if(session()->get('ret_delivery_note_view')==1)
 
         <!-- Retune Note -->
         <li class="sidenav-divider mb-1"></li>
@@ -174,8 +202,11 @@
         </li>
 
 
+@endif
 
 
+
+@if(session()->get('otherparts_view')==1)
         <!-- Other parts -->
         <li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">Other Parts</li>
@@ -198,7 +229,7 @@
 
             </ul>
         </li>
-
+        @endif
 
         <!-- Delivery Note -->
         <li class="sidenav-divider mb-1"></li>

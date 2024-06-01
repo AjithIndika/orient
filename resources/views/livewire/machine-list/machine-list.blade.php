@@ -1,5 +1,15 @@
 <div class="bg-white">
 
+
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+
+    if(session()->get('machine_view')==0){ return redirect()->to('/no-access'); }
+        ?>
+
+
+
     <?php
 
     use App\Livewire\MachineList\MachineList;
@@ -10,8 +20,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <div class="mt-5 ml-4 mb-2">
+        @if(session()->get('machine_add')==1)
         <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
             <span class="feather icon-plus"></span>&nbsp;&nbsp;Add New Machine</button>
+            @endif
     </div>
 
 
@@ -60,34 +72,46 @@
                         <td>{{ $mclist->machin_model_details_name }}</td>
                         <td>{{ MachineList::paddlesn($mclist->paddle_details_id) }}
 
+
+
+
                             @if (!empty($mclist->paddle_details_id))
+
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
                                     data-toggle="modal" data-target="#paddlerremove-modal"
                                     wire:click="paddleremove({{ $mclist->machin_list_details_id }})">
                                     <span class="feather icon-trash-2"></span>
                                 </button>
+                                @endif
                             @else
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-success waves-effect"
                                     data-toggle="modal" data-target="#pddleAdd-modal"
                                     wire:click="paddleAdd({{ $mclist->machin_list_details_id }})">
                                     <span class="feather icon-plus"></span>
                                 </button>
+                                @endif
                             @endif
 
                         </td>
                         <td>{{ MachineList::ironsn($mclist->iron_details_id) }}
                             @if (!empty($mclist->iron_details_id))
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
                                     data-toggle="modal" data-target="#ironremove-modal"
                                     wire:click="ironview({{ $mclist->machin_list_details_id}})">
                                     <span class="feather icon-trash-2"></span>
                                 </button>
+                                @endif
                             @else
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-success waves-effect"
                                     data-toggle="modal" data-target="#iron-add"
                                     wire:click="ironlist({{ $mclist->machin_list_details_id }})">
                                     <span class="feather icon-plus"></span>
                                 </button>
+                                @endif
                             @endif
 
                         </td>
@@ -95,28 +119,34 @@
 
 
                             @if (!empty($mclist->box_details_id))
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
                                     data-toggle="modal" data-target="#boxshow-remove-modal"
                                     wire:click="boxshow({{ $mclist->machin_list_details_id }})">
                                     <span class="feather icon-trash-2"></span>
                                 </button>
+                                @endif
                             @else
+                            @if(session()->get('machine_add')==1)
                                 <button type="button" class="btn icon-btn btn-sm btn-outline-success waves-effect"
                                     data-toggle="modal" data-target="#boxAdd-modal"
                                     wire:click="boxAdd({{ $mclist->machin_list_details_id }})">
                                     <span class="feather icon-plus"></span>
                                 </button>
+                                @endif
                             @endif
 
 
                         </td>
                         <td>{{ $mclist->machin_list_details_daily_rent }}</td>
                         <td>
+                            @if(session()->get('>machine_edit')==1)
                             <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"
                                 data-target="#update_daily_reant"
                                 wire:click="machinUpdate({{ $mclist->machin_list_details_id }})">
                                 <span class="feather icon-edit"></span>
                             </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -125,12 +155,13 @@
                 <tr>
                     <th>#</th>
                     <th>Barcode</th>
+                    <th>Get Pass</th>
                     <th>Type</th>
                     <th>Brand</th>
                     <th>Model</th>
-                    <th>Box</th>
                     <th>Paddle</th>
                     <th>Iron</th>
+                    <th>Box</th>
                     <th>Rental</th>
                     <th>Action</th>
                 </tr>

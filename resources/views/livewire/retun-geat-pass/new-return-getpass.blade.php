@@ -8,6 +8,10 @@
     use App\Models\OtheParts;
     use App\Models\delivery_Othe_Parts;
 
+    use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-access'); }
+
     ?>
 
 
@@ -93,42 +97,53 @@
 
                                                     &nbsp;
                                                     @if (!empty($ma->box_details_id) and empty($ma->box_details_recive_date))
+
+                                                    @if(session()->get('ret_delivery_note_add')==1)
                                                         <button type="button" class="btn icon-btn btn-outline-danger"
                                                             data-toggle="modal" data-target="#MC-boxShowe-modal"
                                                             wire:click="boxshowmachin({{ $ma->delivery_machine_details_id }})"><span
                                                                 class="feather icon-corner-up-left"
                                                                 style="width:24px;height:24px;"></span></button>
+                                                                @endif
+
                                                     @endif
 
                                                 </td>
                                                 <td>{{ NewReturnGetpass::paddlesn($ma->paddle_details_id) }}
                                                     &nbsp;
                                                     @if (!empty($ma->paddle_details_id) and empty($ma->paddle_details_recive_date))
+
+                                                    @if(session()->get('ret_delivery_note_add')==1)
                                                         <button type="button" class="btn icon-btn btn-outline-danger"
                                                             data-toggle="modal" data-target="#MC-PaddleShowe-modal"
                                                             wire:click="paddleshowmachin({{ $ma->delivery_machine_details_id }})"><span
                                                                 class="feather icon-corner-up-left"
                                                                 style="width:24px;height:24px;"></span></button>
+                                                                @endif
                                                     @endif
                                                 </td>
                                                 <td>{{ NewReturnGetpass::ironsn($ma->iron_details_id) }}
                                                     &nbsp;
                                                     @if (!empty($ma->iron_details_id) and empty($ma->iron_details_recive_date))
+                                                    @if(session()->get('ret_delivery_note_add')==1)
                                                         <button type="button" class="btn icon-btn btn-outline-danger"
                                                             data-toggle="modal" data-target="#MC-ironShowe-modal"
                                                             wire:click="ironshowmachin({{ $ma->delivery_machine_details_id }})"><span
                                                                 class="feather icon-corner-up-left"
                                                                 style="width:24px;height:24px;"></span></button>
+                                                                @endif
                                                     @endif
                                                 </td>
                                                 <td>{{ $geat->geatpass_details_number }}
                                                     &nbsp;
                                                     @if (!empty($geat->geatpass_details_number))
+                                                    @if(session()->get('ret_delivery_note_add')==1)
                                                         <button type="button" class="btn icon-btn btn-outline-danger"
                                                             data-toggle="modal" data-target="#MC-retun-modal"
                                                             wire:click="mcretun({{ $ma->delivery_machine_details_id }})"><span
                                                                 class="feather icon-corner-up-left"
                                                                 style="width:24px;height:24px;"></span></button>
+                                                                @endif
                                                     @endif
                                                 </td>
                                             </tr>
@@ -176,11 +191,13 @@
                                         <td></td>
                                         <td>{{ $dp->paddle_details_serial_number }}&nbsp;
                                             @if ($dp->return_delivery_note_date==null)
+                                            @if(session()->get('ret_delivery_note_add')==1)
                                                 <button type="button" class="btn icon-btn btn-outline-danger"
                                                     data-toggle="modal" data-target="#PaddleShowe-modal"
                                                     wire:click="paddleshow({{ $dp->deliverypaddle_details_id }})"><span
                                                         class="feather icon-corner-up-left"
                                                         style="width:24px;height:24px;"></span></button>
+                                                        @endif
                                             @endif
                                         </td>
                                         <td></td>
@@ -232,9 +249,11 @@
                                         <td></td>
                                         <td>{{ $iron->iron_details_serial_number }} &nbsp;
                                             @if ($iron->return_delivery_note_date==null OR $iron->return_delivery_note_date=='')
+                                            @if(session()->get('ret_delivery_note_add')==1)
                                                 <button type="button" class="btn icon-btn btn-outline-danger" data-toggle="modal" data-target="#iron-modal-view" wire:click="IronReciveShow({{$iron->deliveryp_iron_details_id}})"><span
                                                         class="feather icon-corner-up-left"
                                                         style="width:24px;height:24px;"></span></button>
+                                                        @endif
                                             @endif
                                         </td>
                                         <td></td>
@@ -290,9 +309,11 @@
                                         <td>{{ $or->othe_parts_name }}</td>
                                         <td>{{ $or->othe_parts_sn }} &nbsp;
                                             @if ($or->return_delivery_note_date==null OR $or->return_delivery_note_date=='')
+                                            @if(session()->get('ret_delivery_note_add')==1)
                                                 <button type="button" class="btn icon-btn btn-outline-danger" data-toggle="modal" data-target="#other-part-modal-view" wire:click="othepartsShow({{$or->delivery_othe_parts_id}})"><span
                                                         class="feather icon-corner-up-left"
                                                         style="width:24px;height:24px;"></span></button>
+                                                        @endif
                                             @endif
                                         </td>
                                         <td></td>

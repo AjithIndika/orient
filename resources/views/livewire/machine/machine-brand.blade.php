@@ -1,4 +1,10 @@
 <div class="" >
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+
+    if(session()->get('machineBrand_view')==0){ return redirect()->to('/no-access'); }
+        ?>
 
 
 
@@ -8,8 +14,10 @@
 
 
     <div class="mt-5 ml-4 mb-1">
+        @if(session()->get('machineBrand_add')==1)
       <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
     <span class="feather icon-plus"></span>&nbsp;&nbsp;New Machine Brand</button>
+    @endif
   </div>
 
 
@@ -36,9 +44,11 @@
               <td>{{$key+1}}</td>
                 <td>{{$dataAll->machin_brand_details_name}}</td>
                 <td>
+                    @if(session()->get('machineBrand_edit')==1)
                   <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"  data-target="#showeditbranches" wire:click="Edit({{$dataAll->machin_brand_details_id}})">
                       <span class="feather icon-edit"></span>
                       </button>
+                      @endif
 
                 </td>
               </tr>

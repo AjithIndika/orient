@@ -1,5 +1,11 @@
 <div class="" >
 
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+    if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access'); }
+    ?>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -8,8 +14,10 @@
 
 
     <div class="mt-5 ml-4 mb-1">
+        @if(session()->get('otherparts_add')==1)
       <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#new_entry">
     <span class="feather icon-plus"></span>&nbsp;&nbsp;Add New Parts Name Or Type </button>
+    @endif
   </div>
 
 
@@ -38,9 +46,11 @@
                 <td>{{$othParts->othe_parts_types_name}}</td>
 
                 <td>
+                    @if(session()->get('otherparts_edit')==1)
                   <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"  data-target="#showe" wire:click="Edit({{$othParts->othe_parts_types_id}})">
                       <span class="feather icon-edit"></span>
                       </button>
+                      @endif
 
                 </td>
               </tr>

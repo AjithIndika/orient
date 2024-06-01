@@ -1,4 +1,12 @@
 <div class="bg-white p-4">
+
+    <?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Session;
+    if(session()->get('delivery_note_view')==0){ return redirect()->to('/no-access'); }
+    ?>
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">

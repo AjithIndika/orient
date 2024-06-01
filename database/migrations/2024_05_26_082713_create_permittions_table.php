@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('permittions', function (Blueprint $table) {
             $table->increments('permittions_id')->unique();
             $table->string('user_id');
-            $table->string('permittions')->nullable();
+            $table->text('permittions')->nullable();
            /* $table->string('permittions_user_create');
             $table->string('permittions_branch_view');
             $table->string('permittions_branch_create');

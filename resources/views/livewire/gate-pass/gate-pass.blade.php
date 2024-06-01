@@ -5,6 +5,13 @@
     ?>
     <div class="card mb-4 p-3 m-5">
 
+        <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edit')==0){ return redirect()->to('/no-access'); }
+?>
+
+
 
 
         <h3 class="card-header">Delivery Note</h3>
@@ -47,8 +54,10 @@
 
                         </div>
                         <input type="hidden" wire:model="tempGetpassid">
+                        @if(session()->get('delivery_note_edit')==1)
                         <button type="submit" class="btn btn-primary" wire:click.prevent="additems()">Add
                             Machine</button>
+                            @endif
                     </form>
 
                 </div>
@@ -76,8 +85,10 @@
 
                                 </div>
                                 <input type="hidden" wire:model="tempGetpassid">
+                                @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addPaddle()">Add
                                     Paddle</button>
+                                    @endif
                             </form>
 
                         </div>
@@ -103,8 +114,10 @@
 
                                 </div>
                                 <input type="hidden" wire:model="tempGetpassid">
+                                @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addiIron()">Add
                                     Iron</button>
+                                    @endif
                             </form>
 
                         </div>
@@ -137,8 +150,10 @@
 
                                 </div>
                                 <input type="hidden" wire:model="tempGetpassid">
+                                @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addOthrParts()">Add
                                     Othe Parts</button>
+                                    @endif
                             </form>
 
                         </div>
@@ -301,11 +316,13 @@
                                 <td>{{ $tpPaddle->paddle_details_serial_number }}
                                     </br></td>
                                 <td>
+                                    @if(session()->get('delivery_note_edit')==1)
                                     <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
                                         data-toggle="modal" data-target="#boxshow-remove-modal"
                                         wire:click="removepaddle({{ $tpPaddle->temp_paddeltables_id }})">
                                         <span class="feather icon-trash-2"></span>
                                     </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -344,11 +361,13 @@
                                 <td>{{ $tpoth->othe_parts_name }}</td>
                                 <td>{{ $tpoth->othe_parts_sn }}</td>
                                 <td>
+                                    @if(session()->get('delivery_note_edit')==1)
                                     <button type="button" class="btn icon-btn btn-sm btn-outline-warning waves-effect"
-                                       
+
                                         wire:click="othepartsRemove({{ $tpoth->temp_othe_parts_id }})">
                                         <span class="feather icon-trash-2"></span>
                                     </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -360,7 +379,9 @@
             <div>
                 <from>
                     <input type="hidden" wire:model="tempGetpassid">
+                    @if(session()->get('delivery_note_add')==1)
                 <button type="submit" class="btn btn-xl btn-success" wire:click="GenerateDeliveryNote()">Generate Delivery Note</button>
+                @endif
             </from>
             </div>
 

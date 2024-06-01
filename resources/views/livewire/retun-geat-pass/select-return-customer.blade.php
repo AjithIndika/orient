@@ -1,4 +1,12 @@
 <div class="mt-5 col-sm-8 ml-5 bg-white " style="padding: 20px">
+
+
+    <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-access'); }
+?>
+
     <from >
         @csrf
     <div class="row">
