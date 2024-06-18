@@ -11,10 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        App\Http\Middleware\SessionPermition::class;
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
 
-    

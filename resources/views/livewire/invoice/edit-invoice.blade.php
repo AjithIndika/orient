@@ -14,7 +14,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label class="form-label text-center">Invoice Number</label>
-                        <input type="text" class="form-control" placeholder="Email" value="{{$invo->invoice_details_number}}" readonly  wire:model="invoice_details_number">
+                        <input type="text" class="form-control" placeholder="Email" value="{{$invo->invoice_details_number}}" readonly  wire:model.live="invoice_details_number">
                         <div class="clearfix"></div>
                     </div>
                     <div class="form-group col-md-6">
@@ -31,13 +31,13 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label class="form-label">Invoice due date</label>
-                    <input type="text" class="form-control"  value="{{$invo->invoice_details_due_Date}}" wire:model="invoice_details_due_Date">
+                    <input type="text" class="form-control"  value="{{$invo->invoice_details_due_Date}}" wire:model.live="invoice_details_due_Date">
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="form-group col-md-2">
                     <label class="form-label">Customer Number </label>
-                    <input type="text" class="form-control" wire:model="invoice_details_customer_number">
+                    <input type="text" class="form-control" wire:model.live="invoice_details_customer_number">
                     <div class="clearfix"></div>
                 </div>
 
@@ -134,7 +134,7 @@
 
 @if(!empty($invo->invoice_details_check_by) & empty($invo->invoice_details_approved))
         <label class="custom-control custom-checkbox m-0 mt-2 mb-2  @error('invoice_details_approved')  border-danger  @enderror">
-            <input type="checkbox" class="custom-control-input" value="1"  wire:model="invoice_details_approved">
+            <input type="checkbox" class="custom-control-input" value="1"  wire:model.live="invoice_details_approved">
             <span class="custom-control-label text-danger">Check this custom checkbox</span>
 
             <div>

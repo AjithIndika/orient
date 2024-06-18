@@ -2,6 +2,7 @@
     <!-- [ Layout navbar ( Header ) ] Start -->
     <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-white container-p-x" id="layout-navbar">
 
+     
 
         <a href="index.html" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
             <span class="app-brand-logo demo">

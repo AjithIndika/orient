@@ -49,7 +49,7 @@ if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access');
 
                             @if(session()->get('user_password')==1)
                             <button type="button" class="btn icon-btn  btn-outline-success" data-toggle="modal"
-                                data-target="#password" wire:click="password({{ $allUsers->id }})">
+                                data-target="#passwordOpop" wire:click="passwordReset({{ $allUsers->id }})">
                                 <i class="feather icon-more-horizontal"></i>
                             </button>
                              @endif
@@ -122,7 +122,7 @@ if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access');
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Edit Paddle</h4>
+                    <h4 class="modal-title" id="myModalLabel">Edit User</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -143,12 +143,12 @@ if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access');
     </div>
 
 
-    <div class="modal fade" wire:ignore.self id="password" tabindex="-1" role="dialog"
+    <div class="modal fade" wire:ignore.self id="passwordOpop" tabindex="-1" role="dialog"
         aria-labelledby="editBranch" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Edit Paddle</h4>
+                    <h4 class="modal-title" id="myModalLabel">Password Reset</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -157,10 +157,44 @@ if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access');
                     <form>
                         @csrf
 
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Password:</label>
+                                    <input type="password" class="form-control  @error('password')  border-danger  @enderror" id="password"
+                                        wire:model.live.blur="password">
+                                    <div>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Password Re Enter:</label>
+                                    <input type="password" class="form-control  @error('password_confirmation')  border-danger  @enderror"
+                                        id="password-confirm" wire:model.live="password_confirmation">
+                                    <div>
+                                        @error('password_confirmation')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" wire:model.live="email">
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" wire:click.prevent="update()">Save changes</button>
+                    <button type="submit" class="btn btn-primary" wire:click.prevent="updatePassword()">Save changes</button>
 
                     </form>
                 </div>
@@ -171,3 +205,12 @@ if(session()->get('machineModel_view')==0){ return redirect()->to('/no-access');
 
 
 </div>
+
+@push('scripts')
+    <script>
+        window.addEventListener('close-modal', event =>{
+            $('new_entry').modal('hide');
+        });
+
+</script>
+@endpush

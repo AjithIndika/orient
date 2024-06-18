@@ -399,11 +399,11 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                         <form>
                             @csrf
                             <h1> {{ NewReturnGetpass::boxsn($box_details_id) }} Did you receive this Box?</h1>
-                            <input type="hidden" wire:model="box_details_id">
-                            <input type="hidden" wire:model="machin_list_details_id">
-                            <input type="hidden" wire:model="delivery_machine_details_id">
-                            <input type="hidden" wire:model="geatpass_details_number">
-                            <input type="hidden" wire:model="geatpass_details_number">
+                            <input type="hidden" wire:model.live="box_details_id">
+                            <input type="hidden" wire:model.live="machin_list_details_id">
+                            <input type="hidden" wire:model.live="delivery_machine_details_id">
+                            <input type="hidden" wire:model.live="geatpass_details_number">
+                            <input type="hidden" wire:model.live="geatpass_details_number">
                     </div>
 
                     <!-- Modal footer -->
@@ -439,11 +439,11 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                         <form>
                             @csrf
                             <h1> {{ NewReturnGetpass::paddlesn($paddle_details_id) }} Did you receive this Paddl?</h1>
-                            <input type="hidden" wire:model="paddle_details_id">
-                            <input type="hidden" wire:model="machin_list_details_id">
-                            <input type="hidden" wire:model="delivery_machine_details_id">
-                            <input type="hidden" wire:model="geatpass_details_number">
-                            <input type="hidden" wire:model="customers_id">
+                            <input type="hidden" wire:model.live="paddle_details_id">
+                            <input type="hidden" wire:model.live="machin_list_details_id">
+                            <input type="hidden" wire:model.live="delivery_machine_details_id">
+                            <input type="hidden" wire:model.live="geatpass_details_number">
+                            <input type="hidden" wire:model.live="customers_id">
                     </div>
 
                     <!-- Modal footer -->
@@ -480,11 +480,11 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                         <form>
                             @csrf
                             <h1> {{ NewReturnGetpass::ironsn($iron_details_id) }} Did you receive this Iron?</h1>
-                            <input type="hidden" wire:model="iron_details_id">
-                            <input type="hidden" wire:model="machin_list_details_id">
-                            <input type="hidden" wire:model="delivery_machine_details_id">
-                            <input type="hidden" wire:model="geatpass_details_number">
-                            <input type="hidden" wire:model="customers_id">
+                            <input type="hidden" wire:model.live="iron_details_id">
+                            <input type="hidden" wire:model.live="machin_list_details_id">
+                            <input type="hidden" wire:model.live="delivery_machine_details_id">
+                            <input type="hidden" wire:model.live="geatpass_details_number">
+                            <input type="hidden" wire:model.live="customers_id">
                     </div>
 
                     <!-- Modal footer -->
@@ -523,11 +523,11 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                             @csrf
                             <h1> {{ NewReturnGetpass::machin($machin_list_details_id) }} Did you receive this Machine?
                             </h1>
-                            <input type="hidden" wire:model="iron_details_id">
-                            <input type="hidden" wire:model="paddle_details_id">
-                            <input type="hidden" wire:model="box_details_id">
-                            <input type="hidden" wire:model="machin_list_details_id">
-                            <input type="hidden" wire:model="delivery_machine_details_id">
+                            <input type="hidden" wire:model.live="iron_details_id">
+                            <input type="hidden" wire:model.live="paddle_details_id">
+                            <input type="hidden" wire:model.live="box_details_id">
+                            <input type="hidden" wire:model.live="machin_list_details_id">
+                            <input type="hidden" wire:model.live="delivery_machine_details_id">
                     </div>
 
                     <!-- Modal footer -->
@@ -566,8 +566,8 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                          @csrf
                          <h1>  Did you receive this Paddle ?
                          </h1>
-                         <input type="hidden" wire:model="paddle_details_id">
-                         <input type="hidden" wire:model="deliverypaddle_details_id">
+                         <input type="hidden" wire:model.live="paddle_details_id">
+                         <input type="hidden" wire:model.live="deliverypaddle_details_id">
                  </div>
 
                  <!-- Modal footer -->
@@ -603,8 +603,8 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                  <form>
                      @csrf
                      <h1>  Did you receive this Iron ?  </h1>
-                     <input type="hidden" wire:model="iron_details_id">
-                     <input type="hidden" wire:model="deliveryp_iron_details_id">
+                     <input type="hidden" wire:model.live="iron_details_id">
+                     <input type="hidden" wire:model.live="deliveryp_iron_details_id">
              </div>
 
              <!-- Modal footer -->
@@ -642,8 +642,8 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
                          @csrf
                          <h1>  Did you receive this Parts ?
                          </h1>
-                         <input type="hidden" wire:model="othe_parts_id">
-                         <input type="hidden" wire:model="delivery_othe_parts_id">
+                         <input type="hidden" wire:model.live="othe_parts_id">
+                         <input type="hidden" wire:model.live="delivery_othe_parts_id">
                  </div>
 
                  <!-- Modal footer -->

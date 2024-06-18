@@ -22,7 +22,7 @@
                     <td>{{$inview->invoice_details_total}}</td>
                     <td>
 
-                        @if(empty($inview->invoice_details_check_by))
+                        @if(empty($inview->invoice_details_check_by) AND session()->get('new_invoice_Check')==1)
                         <a href="/edit-invoice/{{$inview->invoice_details_number}}">   <button type="button" class="btn icon-btn btn-outline-success" >
                             <i class="feather icon-check-square "></i>
                         </button>
@@ -35,7 +35,7 @@
 
 
                     <td>
-                     @if(!empty($inview->invoice_details_check_by))
+                     @if(!empty($inview->invoice_details_check_by) AND session()->get('new_invoice_approval')==1)
                      <a href="/edit-invoice/{{$inview->invoice_details_number}}">   <button type="button" class="btn icon-btn btn-outline-success" >
                         <i class="lnr lnr-thumbs-up"></i>
                      </button>

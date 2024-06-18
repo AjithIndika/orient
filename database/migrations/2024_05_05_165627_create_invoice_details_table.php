@@ -24,6 +24,22 @@ return new class extends Migration
             $table->string('invoice_details_approved_date')->nullable();
             $table->string('invoice_details_total')->nullable();
             $table->string('invoice_details_balance')->nullable();
+            $table->string('invoice_details_balance_Date')->nullable();
+            $table->string('invoice_details_balance_by')->nullable();
+            $table->string('invoice_details_balance_recive_methord')->nullable();
+            $table->string('invoice_details_balance_recive_cheque_number')->nullable();
+
+            $table->string('invoice_details_balance_recive_cheque_deposit_date')->nullable();
+            $table->string('invoice_details_balance_recive_reference_number')->nullable();
+            $table->string('invoice_details_balance_recive_bank_deposit_date')->nullable();
+            $table->string('invoice_details_balance_recive_by')->nullable();
+            $table->string('invoice_details_balance_recive_date')->nullable();
+            $table->string('invoice_details_balance_cheque_bank_date')->nullable();
+            $table->string('invoice_details_balance_cheque_bank_refer_number')->nullable();
+            $table->string('invoice_details_balance_cheque_bank_by')->nullable();
+
+
+
             $table->string('invoice_details_send_email')->nullable();
             $table->string('invoice_details_due_Date')->nullable();
             $table->string('invoice_details_jenarate_Date')->nullable();

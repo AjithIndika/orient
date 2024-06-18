@@ -35,7 +35,13 @@
                     </td>
 
 
-                    <td> <a href="/viewInvoice/{{$inview->invoice_details_number}}">view</a> </td>
+                    <td>
+                        <a href="/viewInvoice/{{$inview->invoice_details_number}}">
+                            <button type="button"  class="btn icon-btn btn-outline-success">
+                                <i class="lnr lnr-file-empty"></i>
+                            </button>
+                             </a>
+                        </td>
 
 
                 </tr>
@@ -68,8 +74,8 @@
                 <form>
                     @csrf
                     <h1> {{$invoice_details_number}} Do you need to send this via email?</h1>
-                    <input type="hidden" wire:model="invoice_details_id">
-                    <input type="hidden" wire:model="customers_email">
+                    <input type="hidden" wire:model.live="invoice_details_id">
+                    <input type="hidden" wire:model.live="customers_email">
             </div>
 
             <!-- Modal footer -->

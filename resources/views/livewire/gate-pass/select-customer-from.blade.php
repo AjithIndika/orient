@@ -13,7 +13,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="email">Select Customer:</label>
-                <select  class="form-control selectcustomer @error('customers_details')  border-danger  @enderror"  wire:model="customers_details"  id="selectcustomer" required>
+                <select  class="form-control selectcustomer @error('customers_details')  border-danger  @enderror"  wire:model.live="customers_details"  id="selectcustomer" required>
                   <option selected>Select Customer:</option>
                   @foreach ($custamers as $custamers)
                       <option value="{{$custamers->customers_id}}">{{$custamers->customers_name}}</option>
@@ -29,7 +29,7 @@
         <div class="col">
           <div class="form-group">
               <label for="email">Driver Name:</label>
-              <input type="text" class="form-control  @error('geatpass_temp_details_driver_name')  border-danger  @enderror" placeholder="Driver Name"  id="email"  wire:model="geatpass_temp_details_driver_name"   required>
+              <input type="text" class="form-control  @error('geatpass_temp_details_driver_name')  border-danger  @enderror" placeholder="Driver Name"  id="email"  wire:model.live="geatpass_temp_details_driver_name"   required>
                 @error('geatpass_temp_details_driver_name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
@@ -42,7 +42,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="email">Driver NIC:</label>
-                <input type="text" class="form-control  @error('geatpass_temp_details_driver_nic')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model="geatpass_temp_details_driver_nic"  required>
+                <input type="text" class="form-control  @error('geatpass_temp_details_driver_nic')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model.live="geatpass_temp_details_driver_nic"  required>
                   @error('geatpass_temp_details_driver_nic') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
               </div>
@@ -50,7 +50,7 @@
         <div class="col">
           <div class="form-group">
               <label for="email">Driver Mobile:</label>
-              <input type="text" class="form-control  @error('geatpass_temp_details_driver_mobile')  border-danger  @enderror" placeholder="Driver Mobile"  id="email"  wire:model="geatpass_temp_details_driver_mobile"  required>
+              <input type="text" class="form-control  @error('geatpass_temp_details_driver_mobile')  border-danger  @enderror" placeholder="Driver Mobile"  id="email"  wire:model.live="geatpass_temp_details_driver_mobile"  required>
                 @error('geatpass_temp_details_driver_mobile') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
@@ -61,7 +61,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="email">Vehicle Number:</label>
-                <input type="text" class="form-control  @error('geatpass_temp_details_vehicle')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model="geatpass_temp_details_vehicle"  required>
+                <input type="text" class="form-control  @error('geatpass_temp_details_vehicle')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model.live="geatpass_temp_details_vehicle"  required>
                   @error('geatpass_temp_details_vehicle') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
               </div>

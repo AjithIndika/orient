@@ -219,14 +219,14 @@
                     <form>
                         @csrf
 
-                        <input type="hidden" readonly wire:model="machin_list_details_id">
+                        <input type="hidden" readonly wire:model.live="machin_list_details_id">
 
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="email">Branche:</label>
                                     <select class="form-control @error('branches')  border-danger  @enderror "
-                                        wire:model="branches" required>
+                                        wire:model.live="branches" required>
                                         @if (!@empty($mclist->branches_id))
                                             <option value="{{ $mclist->branches_id }}">
                                                 {{ MachineList::branchname($mclist->branches_id) }} </option>
@@ -253,7 +253,7 @@
                                 <input type="text"
                                     class="form-control  @error('machin_list_details_daily_rent')  border-danger  @enderror"
                                     placeholder="Daily Rent" id="email"
-                                    wire:model="machin_list_details_daily_rent"
+                                    wire:model.live="machin_list_details_daily_rent"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                     required>
                                 @error('machin_list_details_daily_rent')
@@ -302,7 +302,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <input type="hidden" readonly wire:model="paddle_details_id">
+                        <input type="hidden" readonly wire:model.live="paddle_details_id">
                     </div>
 
             </div>
@@ -339,12 +339,12 @@
                 <form>
                     @csrf
 
-                    <input type="hidden" wire:model="machin_list_details_id">
-                    <input type="hidden" wire:model="machin_list_details_barcode">
+                    <input type="hidden" wire:model.live="machin_list_details_id">
+                    <input type="hidden" wire:model.live="machin_list_details_barcode">
                     <div class="form-group">
                         <label for="email">Paddle:</label>
                         <select class="form-control @error('paddle_details')  border-success  @enderror "
-                            wire:model="paddle_details">
+                            wire:model.live="paddle_details">
                             <option selected>Paddle</option>
                             @foreach ($mpaddle as $Paddle)
 
@@ -363,8 +363,8 @@
 
                     <div class="form-group">
 
-                        <input type="hidden" readonly wire:model="paddle_details_serial_number">
-                        <input type="hidden" readonly wire:model="paddle_details_id">
+                        <input type="hidden" readonly wire:model.live="paddle_details_serial_number">
+                        <input type="hidden" readonly wire:model.live="paddle_details_id">
                     </div>
 
             </div>
@@ -404,7 +404,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <input type="hidden" readonly wire:model="iron_details_id">
+                        <input type="hidden" readonly wire:model.live="iron_details_id">
                     </div>
 
             </div>
@@ -442,7 +442,7 @@
                     <div class="form-group">
                         <label for="email">Iron:</label>
                         <select class="form-control @error('iron_details')  border-success  @enderror "
-                            wire:model="iron_details">
+                            wire:model.live="iron_details">
                             <option selected>Iron</option>
                             @foreach ($miron as $iron)
 
@@ -461,8 +461,8 @@
 
                     <div class="form-group">
 
-                        <input type="hidden" readonly wire:model="machin_list_details_id">
-                        <input type="hidden" readonly wire:model="machin_list_details_barcode">
+                        <input type="hidden" readonly wire:model.live="machin_list_details_id">
+                        <input type="hidden" readonly wire:model.live="machin_list_details_barcode">
 
                     </div>
 
@@ -503,8 +503,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <input type="hidden" readonly wire:model="machin_list_details_id">
-                        <input type="hidden" readonly wire:model="box_details_id">
+                        <input type="hidden" readonly wire:model.live="machin_list_details_id">
+                        <input type="hidden" readonly wire:model.live="box_details_id">
                     </div>
 
             </div>
@@ -541,13 +541,13 @@
                 <form>
                     @csrf
 
-                    <input type="hidden" wire:model="machin_list_details_id">
-                    <input type="hidden" wire:model="machin_list_details_barcode">
+                    <input type="hidden" wire:model.live="machin_list_details_id">
+                    <input type="hidden" wire:model.live="machin_list_details_barcode">
 
                     <div class="form-group">
                         <label for="email">Box:</label>
                         <select class="form-control @error('box_details')  border-danger  @enderror "
-                            wire:model="box_details">
+                            wire:model.live="box_details">
                             <option selected>Box</option>
                             @foreach ($mbox as $Box)
 
@@ -567,8 +567,8 @@
 
                     <div class="form-group">
 
-                        <input type="hidden" readonly wire:model="paddle_details_serial_number">
-                        <input type="hidden" readonly wire:model="paddle_details_id">
+                        <input type="hidden" readonly wire:model.live="paddle_details_serial_number">
+                        <input type="hidden" readonly wire:model.live="paddle_details_id">
                     </div>
 
             </div>

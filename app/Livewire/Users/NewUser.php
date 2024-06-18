@@ -105,12 +105,9 @@ class NewUser extends Component
     public $otherparts_add;
     public $otherparts_edit;
 
-
-
-
-
-
-
+    public $new_invoice_view;
+    public $new_invoice_Check;
+    public $new_invoice_approval;
 
 
 
@@ -188,12 +185,19 @@ class NewUser extends Component
                       'otherparts_add'=>$this->otherparts_add,
                       'otherparts_edit'=>$this->otherparts_edit,
 
+                      'new_invoice_view'=>$this->new_invoice_view,
+                      'new_invoice_Check'=>$this->new_invoice_Check,
+                      'new_invoice_approval'=>$this->new_invoice_approval,
+
                     );
 
         $permition=['user_id'=>$userID,'permittions'=>json_encode($permi)];
         Permittion::create($permition);
         toastr()->success('Data has been saved successfully!', 'Congrats');
         $this->resetinputs();
+
+     $this->dispatch('close-modal');
+    // $this->dispatch('close-modal');
 
     }
 
@@ -280,12 +284,9 @@ public function Edit(int $id){
              $this->otherparts_edit=$per->otherparts_edit;
 
 
-
-
-
-
-
-
+             $this->new_invoice_view=$per->new_invoice_view;
+             $this->new_invoice_Check=$per->new_invoice_Check;
+             $this->new_invoice_approval=$per->new_invoice_approval;
 
           }
           else{
@@ -358,6 +359,9 @@ public function update(){
                       'otherparts_add'=>$this->otherparts_add,
                       'otherparts_edit'=>$this->otherparts_edit,
 
+                      'new_invoice_view'=>$this->new_invoice_view,
+                      'new_invoice_Check'=>$this->new_invoice_Check,
+                      'new_invoice_approval'=>$this->new_invoice_approval,
 
 
                     );
@@ -369,18 +373,48 @@ public function update(){
 }
 
 
-public function resetinputs(){
-    $this->name='';
-    $this->email='';
-    $this->password='';
-    $this->password_confirmation='';
-    $this->system_Setting='';
-    $this->system_Setting_view='';
+
+     public function passwordReset(int $id){
+
+        $edata= User::where('id',$id )->first();
+
+        if($edata){
+              $this->name=$edata->name;
+              $this->email=$edata->email;
+              $this->id=$id;
+          }
+          else{
+          }
+
+
+          $this->dispatch('passwordOpop');
+
+
      }
 
 
+     public function updatePassword(){
+        $validated = $this->validate([
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
+
+        User::where('email',$this->email)->update(['password'=> Hash::make($this->password)]);
+        toastr()->success('Data has been saved successfully!', 'Congrats');
 
 
+
+     }
+
+
+     public function resetinputs(){
+        $this->name='';
+        $this->email='';
+        $this->password='';
+        $this->password_confirmation='';
+        $this->system_Setting='';
+        $this->system_Setting_view='';
+         }
 
     public function render( )
     {

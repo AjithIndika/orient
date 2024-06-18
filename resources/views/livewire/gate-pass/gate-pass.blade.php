@@ -43,7 +43,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                             <label class="form-label">Machine</label>
 
 
-                            <select class="custom-select machinselec machin_list_details_id" wire:model="machin_list_details_id" >
+                            <select class="custom-select machinselec machin_list_details_id" wire:model.live="machin_list_details_id" >
                                 <option selected>Select Machine</option>
 
                                 @foreach ($mclist as $mclists)
@@ -53,7 +53,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                             </select>
 
                         </div>
-                        <input type="hidden" wire:model="tempGetpassid">
+                        <input type="hidden" wire:model.live="tempGetpassid">
                         @if(session()->get('delivery_note_edit')==1)
                         <button type="submit" class="btn btn-primary" wire:click.prevent="additems()">Add
                             Machine</button>
@@ -74,7 +74,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     <label class="form-label">Paddle</label>
 
 
-                                    <select class="custom-select Paddelselect" wire:model="PaDetails">
+                                    <select class="custom-select Paddelselect" wire:model.live="PaDetails">
                                         <option selected>Select Paddle</option>
 
                                         @foreach ($Pdtails as $Pd)
@@ -84,7 +84,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     </select>
 
                                 </div>
-                                <input type="hidden" wire:model="tempGetpassid">
+                                <input type="hidden" wire:model.live="tempGetpassid">
                                 @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addPaddle()">Add
                                     Paddle</button>
@@ -103,7 +103,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     <label class="form-label">Iron</label>
 
 
-                                    <select class="custom-select Ironselect" wire:model="irondetails">
+                                    <select class="custom-select Ironselect" wire:model.live="irondetails">
                                         <option selected>Select </option>
 
                                         @foreach ($irDetails as $irDet)
@@ -113,7 +113,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     </select>
 
                                 </div>
-                                <input type="hidden" wire:model="tempGetpassid">
+                                <input type="hidden" wire:model.live="tempGetpassid">
                                 @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addiIron()">Add
                                     Iron</button>
@@ -139,7 +139,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     <label class="form-label">Other Parts</label>
 
 
-                                    <select class="custom-select otherparts" wire:model="othe_parts_id">
+                                    <select class="custom-select otherparts" wire:model.live="othe_parts_id">
                                         <option selected>Select Other Parts</option>
 
                                         @foreach ($otherParts as $otParts)
@@ -149,7 +149,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
                                     </select>
 
                                 </div>
-                                <input type="hidden" wire:model="tempGetpassid">
+                                <input type="hidden" wire:model.live="tempGetpassid">
                                 @if(session()->get('delivery_note_edit')==1)
                                 <button type="submit" class="btn btn-primary" wire:click.prevent="addOthrParts()">Add
                                     Othe Parts</button>
@@ -378,7 +378,7 @@ if(session()->get('delivery_note_view')==0 AND session()->get('delivery_note_edi
 
             <div>
                 <from>
-                    <input type="hidden" wire:model="tempGetpassid">
+                    <input type="hidden" wire:model.live="tempGetpassid">
                     @if(session()->get('delivery_note_add')==1)
                 <button type="submit" class="btn btn-xl btn-success" wire:click="GenerateDeliveryNote()">Generate Delivery Note</button>
                 @endif

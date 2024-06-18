@@ -13,7 +13,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
             <div class="form-group">
                 <label for="email">Select Customer:</label>
-                <select  class="form-control @error('customers_details')  border-danger  @enderror"  required  wire:model="customers_id">
+                <select  class="form-control @error('customers_details')  border-danger  @enderror"  required  wire:model.live="customers_id">
                   <option selected>Select Customer:</option>
                   @foreach ($custamers as $custamers)
                       <option value="{{$custamers->customers_id}}">{{$custamers->customers_name}}</option>
@@ -29,7 +29,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
           <div class="form-group">
               <label for="email">Driver Name:</label>
-              <input type="text" class="form-control  @error('geatpass_temp_details_driver_name')  border-danger  @enderror" placeholder="Driver Name"  id="email"  wire:model="geatpass_temp_details_driver_name"   required>
+              <input type="text" class="form-control  @error('geatpass_temp_details_driver_name')  border-danger  @enderror" placeholder="Driver Name"  id="email"  wire:model.live="geatpass_temp_details_driver_name"   required>
                 @error('geatpass_temp_details_driver_name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
@@ -41,7 +41,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
             <div class="form-group">
                 <label for="email">Driver NIC:</label>
-                <input type="text" class="form-control  @error('geatpass_temp_details_driver_nic')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model="geatpass_temp_details_driver_nic"  required>
+                <input type="text" class="form-control  @error('geatpass_temp_details_driver_nic')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model.live="geatpass_temp_details_driver_nic"  required>
                   @error('geatpass_temp_details_driver_nic') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
               </div>
@@ -49,7 +49,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
           <div class="form-group">
               <label for="email">Driver Mobile:</label>
-              <input type="text" class="form-control  @error('geatpass_temp_details_driver_mobile')  border-danger  @enderror" placeholder="Driver Mobile"  id="email"  wire:model="geatpass_temp_details_driver_mobile"  required>
+              <input type="text" class="form-control  @error('geatpass_temp_details_driver_mobile')  border-danger  @enderror" placeholder="Driver Mobile"  id="email"  wire:model.live="geatpass_temp_details_driver_mobile"  required>
                 @error('geatpass_temp_details_driver_mobile') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             </div>
@@ -59,7 +59,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
             <div class="form-group">
                 <label for="email">Vehicle Number:</label>
-                <input type="text" class="form-control  @error('geatpass_temp_details_vehicle')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model="geatpass_temp_details_vehicle"  required>
+                <input type="text" class="form-control  @error('geatpass_temp_details_vehicle')  border-danger  @enderror" placeholder="Driver NIC"  id="email"  wire:model.live="geatpass_temp_details_vehicle"  required>
                   @error('geatpass_temp_details_vehicle') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
               </div>
@@ -67,7 +67,7 @@ if(session()->get('ret_delivery_note_view')==0){ return redirect()->to('/no-acce
         <div class="col">
             <div class="form-group">
                 <label for="email">Getpass Number:</label>
-                <input type="text" class="form-control  @error('gatepass_number')  border-danger  @enderror" placeholder="Gate pass Number"  id="email"  wire:model="gatepass_number"  required>
+                <input type="text" class="form-control  @error('gatepass_number')  border-danger  @enderror" placeholder="Gate pass Number"  id="email"  wire:model.live="gatepass_number"  required>
                   @error('gatepass_number') <span class="text-danger">{{ $message }}</span> @enderror
               </div>
         </div>

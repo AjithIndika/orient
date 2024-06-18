@@ -27,6 +27,8 @@ use App\Livewire\OthereParts\OtherParts;
 use App\Livewire\Invoice\NewInvoice;
 use App\Livewire\Invoice\ReadyToSend;
 use App\Livewire\Invoice\ViewInvoice;
+use App\Livewire\Invoice\PandingInvoice;
+use App\Livewire\Invoice\CompleteInvoice;
 
 use App\Livewire\Invoice\EditInvoice;
 use App\Livewire\Users\NewUser;
@@ -69,6 +71,12 @@ Route::get('/viewInvoice/{invoice_details_number}',ViewInvoice::class)->middlewa
 
 Route::get('/New-user',NewUser::class)->middleware('auth');
 Route::get('/no-access',Access::class)->middleware('auth');
+Route::get('/panding-invoice',PandingInvoice::class)->middleware('auth');
+Route::get('/complete-invoice',CompleteInvoice::class)->middleware('auth');
+
+
+
+
 
 
 

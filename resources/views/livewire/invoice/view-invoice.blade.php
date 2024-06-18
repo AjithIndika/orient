@@ -396,10 +396,22 @@ use App\Models\InvoiceMacineDetails;
     </div>
 
 
+    <style type="text/css">
+    @media print {
+  #printPageButton {
+    display: none;
+  }
+}</style>
 
-    <button type="button" class="btn btn-lg btn-success"  wire:click.prevent="pdf()">
-        <i class="feather icon-save"></i>&nbsp;&nbsp;Approved to Send
+
+
+
+
+    <button type="button" id="printPageButton" class="btn btn-lg btn-success"  wire:click.prevent="pdf()">
+        <i class="feather icon-save"></i>&nbsp;&nbsp;Approved 
     </button>
+
+
 
 
 </div>
