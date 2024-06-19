@@ -109,6 +109,20 @@ class NewUser extends Component
     public $new_invoice_Check;
     public $new_invoice_approval;
 
+    public $rady_invoice_view;
+    public $rady_send_email_invoice;
+    public $rady_send_email_view;
+
+
+    public $pending_invoice_menu_view;
+    public $pending_invoice_payment_update;
+    public $pending_invoice_view;
+    public $complete_invoice_menu_view;
+    public $complete_invoice_payment_view;
+    public $complete_invoice_view;
+
+
+
 
 
 
@@ -188,6 +202,18 @@ class NewUser extends Component
                       'new_invoice_view'=>$this->new_invoice_view,
                       'new_invoice_Check'=>$this->new_invoice_Check,
                       'new_invoice_approval'=>$this->new_invoice_approval,
+
+                      'rady_invoice_view'=>$this->rady_invoice_view,
+                      'rady_send_email_invoice'=>$this->rady_send_email_invoice,
+                      'rady_send_email_view'=>$this->rady_send_email_view,
+
+                      'pending_invoice_menu_view'=>$this->pending_invoice_menu_view,
+                      'pending_invoice_payment_update'=>$this->pending_invoice_payment_update,
+                      'pending_invoice_view'=>$this->pending_invoice_view,
+
+                      'complete_invoice_menu_view'=>$this->complete_invoice_menu_view,
+                      'complete_invoice_payment_view'=>$this->complete_invoice_payment_view,
+                      'complete_invoice_view'=>$this->complete_invoice_view,
 
                     );
 
@@ -288,6 +314,22 @@ public function Edit(int $id){
              $this->new_invoice_Check=$per->new_invoice_Check;
              $this->new_invoice_approval=$per->new_invoice_approval;
 
+
+             $this->rady_invoice_view=$per->rady_invoice_view;
+             $this->rady_send_email_invoice=$per->rady_send_email_invoice;
+             $this->rady_send_email_view=$per->rady_send_email_view;
+
+
+             $this->pending_invoice_menu_view=$per->pending_invoice_menu_view;
+             $this->pending_invoice_payment_update=$per->pending_invoice_payment_update;
+             $this->pending_invoice_view=$per->pending_invoice_view;
+
+
+
+             $this->complete_invoice_menu_view=$per->complete_invoice_menu_view;
+             $this->complete_invoice_payment_view=$per->complete_invoice_payment_view;
+             $this->complete_invoice_view=$per->complete_invoice_view;
+
           }
           else{
           }
@@ -363,7 +405,19 @@ public function update(){
                       'new_invoice_Check'=>$this->new_invoice_Check,
                       'new_invoice_approval'=>$this->new_invoice_approval,
 
+                      'rady_invoice_view'=>$this->rady_invoice_view,
+                      'rady_send_email_invoice'=>$this->rady_send_email_invoice,
+                      'rady_send_email_view'=>$this->rady_send_email_view,
 
+
+                      'pending_invoice_menu_view'=>$this->pending_invoice_menu_view,
+                      'pending_invoice_payment_update'=>$this->pending_invoice_payment_update,
+                      'pending_invoice_view'=>$this->pending_invoice_view,
+
+
+                      'complete_invoice_menu_view'=>$this->complete_invoice_menu_view,
+                      'complete_invoice_payment_view'=>$this->complete_invoice_payment_view,
+                      'complete_invoice_view'=>$this->complete_invoice_view,
                     );
 
 

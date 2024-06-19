@@ -231,7 +231,7 @@
         </li>
         @endif
 
-        @if(session()->get('new_invoice_view')==1)
+        @if(session()->get('new_invoice_view')==1 Or session()->get('rady_invoice_view')==1 OR session()->get('pending_invoice_menu_view')==1 OR session()->get('complete_invoice_menu_view')==1)
         <!-- Delivery Note -->
         <li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">Invoice</li>
@@ -246,21 +246,32 @@
                         <div>New Invoice</div>
                     </a>
                 </li>
+
+                @if(session()->get('new_invoice_view')==1)
                 <li class="sidenav-item">
                     <a href="/ready-to-Send" class="sidenav-link" wire:navigate>
                         <div>Ready to Send</div>
                     </a>
                 </li>
+                @endif
+
+
+                @if(session()->get('pending_invoice_menu_view')==1)
                 <li class="sidenav-item">
                     <a href="/panding-invoice" class="sidenav-link" wire:navigate>
                         <div>Panding Invoice</div>
                     </a>
                 </li>
+                @endif
+
+
+                @if(session()->get('complete_invoice_menu_view')==1)
                 <li class="sidenav-item">
                     <a href="/complete-invoice" class="sidenav-link" wire:navigate>
                         <div>Complete Invoice</div>
                     </a>
                 </li>
+                @endif
             </ul>
         </li>
         @endif

@@ -882,6 +882,171 @@
 
 
 
+    <!------- Rady to seand !---------->
+    <hr class="hr mt-2" />
+    <div class="mt-1 mb-1 row">
+        <h1>Rady send</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('rady_invoice_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="rady_invoice_view">View
+                </label>
+                <div>
+                    @error('rady_invoice_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('rady_send_email_invoice')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="rady_send_email_invoice">Email Send
+                </label>
+                <div>
+                    @error('rady_send_email_invoice')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('rady_send_email_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="rady_send_email_view">Invoices View
+                </label>
+                <div>
+                    @error('rady_send_email_view
+                    ')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+        </div>
+    </div>
+
+
+
+
+
+    <!------- pending invoice !---------->
+    <hr class="hr mt-2" />
+    <div class="mt-1 mb-1 row">
+        <h1>Pending invoice</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('pending_invoice_menu_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="pending_invoice_menu_view">View
+                </label>
+                <div>
+                    @error('pending_invoice_menu_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('pending_invoice_payment_update')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="pending_invoice_payment_update">Email Send
+                </label>
+                <div>
+                    @error('pending_invoice_payment_update')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('pending_invoice_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="rady_send_email_view">Invoices View
+                </label>
+                <div>
+                    @error('pending_invoice_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+        </div>
+    </div>
+
+
+
+    <!------- complete invoice !---------->
+    <hr class="hr mt-2" />
+    <div class="mt-1 mb-1 row">
+        <h1>Complete invoice</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('complete_invoice_menu_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="pending_invoice_menu_view">View
+                </label>
+                <div>
+                    @error('pending_invoice_menu_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('complete_invoice_payment_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="complete_invoice_payment_view">Email Send
+                </label>
+                <div>
+                    @error('complete_invoice_payment_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                    <input class="form-check-input  @error('complete_invoice_view')  border-danger  @enderror" type="checkbox"
+                        wire:model.live="complete_invoice_view">Invoices View
+                </label>
+                <div>
+                    @error('complete_invoice_view')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+        </div>
+    </div>
+
+
+
 
 
 

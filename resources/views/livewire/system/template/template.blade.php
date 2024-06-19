@@ -62,6 +62,18 @@ Session::put(['user_view'=>$per->user_view,
              'new_invoice_Check'=>$per->new_invoice_Check,
              'new_invoice_approval'=>$per->new_invoice_approval,
 
+             'rady_invoice_view'=>$per->rady_invoice_view,
+             'rady_send_email_invoice'=>$per->rady_send_email_invoice,
+             'rady_send_email_view'=>$per->rady_send_email_view,
+
+            'pending_invoice_menu_view'=>$per->pending_invoice_menu_view,
+            'pending_invoice_payment_update'=>$per->pending_invoice_payment_update,
+            'pending_invoice_view'=>$per->pending_invoice_view,
+
+            'complete_invoice_menu_view'=>$per->complete_invoice_menu_view,
+            'complete_invoice_payment_view'=>$per->complete_invoice_payment_view,
+            'complete_invoice_view'=>$per->complete_invoice_view,
+
             ]);
 ?>
 

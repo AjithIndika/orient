@@ -9,8 +9,15 @@
                     <th>Invoice number</th>
                     <th>Customer Name</th>
                     <th>Total Amount</th>
+
+                    @if(session()->get('rady_send_email_invoice')==1)
                     <th>Email</th>
+                    @endif
+
+
+                    @if(session()->get('rady_send_email_view')==1)
                     <th>View</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -24,25 +31,30 @@
                     <td> {{$inview->invoice_details_number}}</td>
                     <td>{{$inview->customers_name}}</td>
                     <td>{{$inview->invoice_details_total}}</td>
-                    <td>
 
-                        @if(!empty($inview->customers_email))
+                    @if(session()->get('rady_send_email_invoice')==1)
+                    @if(!empty($inview->customers_email))
+                    <td>
                         <button type="button"  class="btn icon-btn btn-outline-success" data-toggle="modal" data-target="#sendemailModal"   wire:click="sendEmails({{$inview->invoice_details_id}})">
                             <i class="lnr lnr-envelope"></i>
                         </button>
-                        @endif
+
                         </form>
                     </td>
+                    @endif
+                    @endif
 
-
+                    @if(session()->get('rady_send_email_view')==1)
                     <td>
+
                         <a href="/viewInvoice/{{$inview->invoice_details_number}}">
                             <button type="button"  class="btn icon-btn btn-outline-success">
                                 <i class="lnr lnr-file-empty"></i>
                             </button>
                              </a>
-                        </td>
 
+                        </td>
+                        @endif
 
                 </tr>
 

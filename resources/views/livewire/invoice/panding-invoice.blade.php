@@ -9,8 +9,12 @@
                     <th>Invoice number</th>
                     <th>Customer Name</th>
                     <th>Total Amount</th>
+                    @if(session()->get('pending_invoice_payment_update')==1)
                     <th>Payment update</th>
+                    @endif
+                    @if(session()->get('pending_invoice_view')==1)
                     <th>View</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -24,17 +28,15 @@
                     <td> {{$inview->invoice_details_number}}</td>
                     <td>{{$inview->customers_name}}</td>
                     <td>{{$inview->invoice_details_total}}</td>
+                    @if(session()->get('pending_invoice_payment_update')==1)
                     <td>
-
-
                         <button type="button"  class="btn icon-btn btn-outline-success" data-toggle="modal" data-target="#paymentUpdate"   wire:click="payment({{$inview->invoice_details_id}})">
                             <i class="feather icon-log-in"></i>
                         </button>
-
                         </form>
                     </td>
-
-
+               @endif
+               @if(session()->get('pending_invoice_view')==1)
                     <td>
                         <a href="/viewInvoice/{{$inview->invoice_details_number}}"  wire:navigate>
                             <button type="button"  class="btn icon-btn btn-outline-success">
@@ -42,8 +44,7 @@
                             </button>
                              </a>
                     </td>
-
-
+                    @endif
                 </tr>
 
 
